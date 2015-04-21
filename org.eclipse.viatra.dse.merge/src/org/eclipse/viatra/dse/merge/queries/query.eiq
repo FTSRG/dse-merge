@@ -1,0 +1,8 @@
+package org.eclipse.viatra.dse.merge.queries
+
+import "http://org.eclipse.viatra.dse.merge/model"
+
+pattern executableDeleteChange(id, change: Delete, set: ChangeSet) {
+	Delete.src(change, id);
+	ChangeSet.changes(set,change);
+}

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="//org.eclipse.viatra.dse.merge/emf-gen" editDirectory="/org.eclipse.viatra.dse.merge.edit/src"
+    editorDirectory="//org.eclipse.viatra.dse.merge.editor/src" modelPluginID="org.eclipse.viatra.dse.merge"
+    modelName="Merge" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    editPluginID="/org.eclipse.viatra.dse.merge.edit" editorPluginID="org.eclipse.viatra.dse.merge"
+    usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore" operationReflection="true"
+    importOrganizing="true">
+  <foreignModel>merge.ecore</foreignModel>
+  <genPackages prefix="Model" basePackage="org.eclipse.viatra.dse.merge" disposableProviderFactory="true"
+      ecorePackage="merge.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="merge.ecore#//Kind">
+      <genEnumLiterals ecoreEnumLiteral="merge.ecore#//Kind/add"/>
+      <genEnumLiterals ecoreEnumLiteral="merge.ecore#//Kind/remove"/>
+      <genEnumLiterals ecoreEnumLiteral="merge.ecore#//Kind/set"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="merge.ecore#//Priority">
+      <genEnumLiterals ecoreEnumLiteral="merge.ecore#//Priority/must"/>
+      <genEnumLiterals ecoreEnumLiteral="merge.ecore#//Priority/may"/>
+    </genEnums>
+    <genClasses ecoreClass="merge.ecore#//ChangeSet">
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference merge.ecore#//ChangeSet/changes"/>
+    </genClasses>
+    <genClasses ecoreClass="merge.ecore#//Change">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute merge.ecore#//Change/src"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute merge.ecore#//Change/executable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute merge.ecore#//Change/priority"/>
+    </genClasses>
+    <genClasses ecoreClass="merge.ecore#//Reference">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute merge.ecore#//Reference/trg"/>
+    </genClasses>
+    <genClasses ecoreClass="merge.ecore#//Feature">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute merge.ecore#//Feature/kind"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference merge.ecore#//Feature/feature"/>
+    </genClasses>
+    <genClasses ecoreClass="merge.ecore#//Attribute">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute merge.ecore#//Attribute/value"/>
+    </genClasses>
+    <genClasses ecoreClass="merge.ecore#//Delete"/>
+    <genClasses ecoreClass="merge.ecore#//Create">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute merge.ecore#//Create/container"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference merge.ecore#//Create/feature"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference merge.ecore#//Create/clazz"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
