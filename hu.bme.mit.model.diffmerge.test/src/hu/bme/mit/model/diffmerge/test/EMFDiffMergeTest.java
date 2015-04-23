@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.incquery.runtime.api.IQuerySpecification;
 import org.eclipse.incquery.runtime.exception.IncQueryException;
-import org.eclipse.viatra.dse.api.TransformationRule;
+import org.eclipse.viatra.dse.api.DSETransformationRule;
 import org.eclipse.viatra.dse.merge.DSEMergeManager;
 import org.eclipse.viatra.dse.merge.DSEMergeManager.Solution;
 import org.eclipse.viatra.dse.merge.diff_merge.EMFDiffMergeTranslator;
@@ -25,13 +25,21 @@ import org.eclipse.viatra.dse.merge.model.ModelPackage;
 import org.eclipse.viatra.dse.merge.model.Priority;
 import org.eclipse.viatra.dse.merge.scope.ScopePackage;
 import org.eclipse.viatra.dse.merge.train.AddAttributeMatch;
+import org.eclipse.viatra.dse.merge.train.AddAttributeMatcher;
 import org.eclipse.viatra.dse.merge.train.AddReferenceMatch;
+import org.eclipse.viatra.dse.merge.train.AddReferenceMatcher;
 import org.eclipse.viatra.dse.merge.train.CreateMatch;
+import org.eclipse.viatra.dse.merge.train.CreateMatcher;
 import org.eclipse.viatra.dse.merge.train.DeleteMatch;
+import org.eclipse.viatra.dse.merge.train.DeleteMatcher;
 import org.eclipse.viatra.dse.merge.train.RemoveAttributeMatch;
+import org.eclipse.viatra.dse.merge.train.RemoveAttributeMatcher;
 import org.eclipse.viatra.dse.merge.train.RemoveReferenceMatch;
+import org.eclipse.viatra.dse.merge.train.RemoveReferenceMatcher;
 import org.eclipse.viatra.dse.merge.train.SetAttributeMatch;
+import org.eclipse.viatra.dse.merge.train.SetAttributeMatcher;
 import org.eclipse.viatra.dse.merge.train.SetReferenceMatch;
+import org.eclipse.viatra.dse.merge.train.SetReferenceMatcher;
 import org.eclipse.viatra.dse.merge.train.operations.AddAttributeOperation;
 import org.eclipse.viatra.dse.merge.train.operations.AddReferenceOperation;
 import org.eclipse.viatra.dse.merge.train.operations.CreateOperation;
@@ -68,7 +76,7 @@ private static String PREFIX = "C:\\Git\\trainbenchmark\\models\\";
 
 	private ArrayList<IQuerySpecification<?>> goals;
 
-	private ArrayList<TransformationRule<?>> rules;
+	private ArrayList<DSETransformationRule<?,?>> rules;
 	
 	private DSEMergeManager manager;
 	
@@ -100,15 +108,15 @@ private static String PREFIX = "C:\\Git\\trainbenchmark\\models\\";
 		changeSetOL = EMFDiffMergeTranslator.translate(comparisonOL);
 		changeSetOR = EMFDiffMergeTranslator.translate(comparisonOR);
 		
-		rules = Lists.<TransformationRule<?>>newArrayList(
-				new TransformationRule<CreateMatch>(CreateQuerySpecification.instance(), new CreateOperation()),
-				new TransformationRule<DeleteMatch>(DeleteQuerySpecification.instance(), new DeleteOperation()),
-				new TransformationRule<SetReferenceMatch>(SetReferenceQuerySpecification.instance(), new SetReferenceOperation()),
-				new TransformationRule<AddReferenceMatch>(AddReferenceQuerySpecification.instance(), new AddReferenceOperation()),
-				new TransformationRule<RemoveReferenceMatch>(RemoveReferenceQuerySpecification.instance(), new RemoveReferenceOperation()),
-				new TransformationRule<SetAttributeMatch>(SetAttributeQuerySpecification.instance(), new SetAttributeOperation()),
-				new TransformationRule<AddAttributeMatch>(AddAttributeQuerySpecification.instance(), new AddAttributeOperation()),
-				new TransformationRule<RemoveAttributeMatch>(RemoveAttributeQuerySpecification.instance(), new RemoveAttributeOperation()));
+		rules = Lists.<DSETransformationRule<?,?>>newArrayList(
+				new DSETransformationRule<CreateMatch,CreateMatcher>(CreateQuerySpecification.instance(), new CreateOperation()),
+				new DSETransformationRule<DeleteMatch,DeleteMatcher>(DeleteQuerySpecification.instance(), new DeleteOperation()),
+				new DSETransformationRule<SetReferenceMatch,SetReferenceMatcher>(SetReferenceQuerySpecification.instance(), new SetReferenceOperation()),
+				new DSETransformationRule<AddReferenceMatch,AddReferenceMatcher>(AddReferenceQuerySpecification.instance(), new AddReferenceOperation()),
+				new DSETransformationRule<RemoveReferenceMatch,RemoveReferenceMatcher>(RemoveReferenceQuerySpecification.instance(), new RemoveReferenceOperation()),
+				new DSETransformationRule<SetAttributeMatch,SetAttributeMatcher>(SetAttributeQuerySpecification.instance(), new SetAttributeOperation()),
+				new DSETransformationRule<AddAttributeMatch,AddAttributeMatcher>(AddAttributeQuerySpecification.instance(), new AddAttributeOperation()),
+				new DSETransformationRule<RemoveAttributeMatch,RemoveAttributeMatcher>(RemoveAttributeQuerySpecification.instance(), new RemoveAttributeOperation()));
 		
 		goals = Lists.<IQuerySpecification<?>>newArrayList(GoalPatternQuerySpecification.instance());		
 

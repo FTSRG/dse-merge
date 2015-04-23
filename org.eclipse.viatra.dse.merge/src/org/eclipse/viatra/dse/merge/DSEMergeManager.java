@@ -12,13 +12,14 @@ import org.eclipse.incquery.runtime.api.IPatternMatch;
 import org.eclipse.incquery.runtime.api.IQuerySpecification;
 import org.eclipse.incquery.runtime.api.IncQueryMatcher;
 import org.eclipse.incquery.runtime.exception.IncQueryException;
+import org.eclipse.viatra.dse.api.DSETransformationRule;
 import org.eclipse.viatra.dse.api.DesignSpaceExplorer;
 import org.eclipse.viatra.dse.api.SolutionTrajectory;
-import org.eclipse.viatra.dse.api.TransformationRule;
 import org.eclipse.viatra.dse.base.DesignSpaceManager;
 import org.eclipse.viatra.dse.merge.model.ChangeSet;
 import org.eclipse.viatra.dse.merge.model.ModelPackage;
 import org.eclipse.viatra.dse.merge.queries.ExecutableDeleteChangeMatch;
+import org.eclipse.viatra.dse.merge.queries.ExecutableDeleteChangeMatcher;
 import org.eclipse.viatra.dse.merge.queries.util.ExecutableDeleteChangeQuerySpecification;
 import org.eclipse.viatra.dse.merge.scope.DSEMergeScope;
 import org.eclipse.viatra.dse.merge.scope.ScopeFactory;
@@ -37,7 +38,7 @@ public class DSEMergeManager {
 	private DesignSpaceExplorer dse;
 	private EPackage metamodel;
 	
-	private Collection<TransformationRule<?>> rules;
+	private Collection<DSETransformationRule<?,?>> rules;
 	private Collection<IQuerySpecification<?>> objectives;
 	
 	private IQuerySpecification<IncQueryMatcher<IPatternMatch>> id2eobject;
@@ -56,7 +57,7 @@ public class DSEMergeManager {
 		this.metamodel = metamodel;
 	}
 	
-	public void setRules(Collection<TransformationRule<?>> rules) {
+	public void setRules(Collection<DSETransformationRule<?,?>> rules) {
 		this.rules = rules;
 	}
 	
@@ -105,13 +106,13 @@ public class DSEMergeManager {
 		}
 		dse.addObjective(modelQueriesHardObjective.withType(ModelQueryType.NO_MATCH));
 		
-		for (TransformationRule<?> rule : rules) {
+		for (DSETransformationRule<?,?> rule : rules) {
 			dse.addTransformationRule(rule);
 		}
 		
 		try {
-			dse.addTransformationRule(new TransformationRule<ExecutableDeleteChangeMatch>(ExecutableDeleteChangeQuerySpecification.instance(), new DefaultMatchProcessor<ExecutableDeleteChangeMatch>()));
-			dse.addTransformationRule(new TransformationRule<IPatternMatch>(id2eobject, new DefaultMatchProcessor<IPatternMatch>()));
+			dse.addTransformationRule(new DSETransformationRule<ExecutableDeleteChangeMatch, ExecutableDeleteChangeMatcher>(ExecutableDeleteChangeQuerySpecification.instance(), new DefaultMatchProcessor<ExecutableDeleteChangeMatch>()));
+			dse.addTransformationRule(new DSETransformationRule<IPatternMatch, IncQueryMatcher<IPatternMatch>>(id2eobject, new DefaultMatchProcessor<IPatternMatch>()));
 		} catch (IncQueryException e) {
 			e.printStackTrace();
 		}
