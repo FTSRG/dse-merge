@@ -173,6 +173,7 @@ public class EMFCompareTest {
 			SolutionTrajectory trajectory = solution.getShortestTrajectory();
 			DSEMergeInputScope mergedModel = manager.applyMerge(trajectory);
 			System.out.println("a solution is applied");
+			break;
 		}
 		
 		System.out.println("done");
