@@ -71,8 +71,8 @@ public class EMFCompareTest {
 
 	private static String PREFIX = "C:\\Git\\trainbenchmark\\models\\";
 	
-	private static String LOCAL_MODEL = PREFIX + "railway-test-1-a.emf.railway";
-	private static String REMOTE_MODEL = PREFIX + "railway-test-1-b.emf.railway";
+	private static String LOCAL_MODEL = PREFIX + "railway-test-1-change.emf.railway";
+	private static String REMOTE_MODEL = PREFIX + "railway-test-1-delete.emf.railway";
 	private static String ORIGINAL_MODEL = PREFIX + "railway-test-1-orig.emf";
 
 	private ChangeSet changeSetOL;
@@ -145,14 +145,14 @@ public class EMFCompareTest {
 				GoalPatternQuerySpecification.instance());		
 
 		//set priority for the first 4 changes on local side
-		for(int i = 0; i < 4; i++) {
-			changeSetOL.getChanges().get(i).setPriority(Priority.MUST);
-		}		
+//		for(int i = 0; i < 4; i++) {
+//			changeSetOL.getChanges().get(i).setPriority(Priority.MUST);
+//		}		
 		
 		//set priority for the first 2 changes on local side
-		for(int i = 0; i < 2; i++) {
-			changeSetOR.getChanges().get(i).setPriority(Priority.MUST);
-		}
+//		for(int i = 0; i < 2; i++) {
+//			changeSetOR.getChanges().get(i).setPriority(Priority.MUST);
+//		}
 		
 		manager = DSEMergeManager.create(originalModel, changeSetOL, changeSetOR);
 		manager.setMetamodel(RailwayPackage.eINSTANCE);

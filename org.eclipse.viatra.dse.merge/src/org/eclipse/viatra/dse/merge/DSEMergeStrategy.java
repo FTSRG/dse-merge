@@ -62,11 +62,11 @@ public class DSEMergeStrategy implements IStrategy {
 
 	private void initializeDeleteDependencies() throws Exception {
 		DSEMergeScope scope = (DSEMergeScope) context.getEditingDomain().getResourceSet().getResources().get(0).getContents().get(0);
-		buildLocalDeleteDependencies(scope.getLocal(), scope.getRemote());
-		buildLocalDeleteDependencies(scope.getRemote(), scope.getLocal());
+		buildDeleteDependencies(scope.getLocal(), scope.getRemote());
+		buildDeleteDependencies(scope.getRemote(), scope.getLocal());
 	}
 
-	private void buildLocalDeleteDependencies(ChangeSet from, ChangeSet to)
+	private void buildDeleteDependencies(ChangeSet from, ChangeSet to)
 			throws Exception {
 		
 		Collection<Long> checkedSet = Sets.newHashSet();
