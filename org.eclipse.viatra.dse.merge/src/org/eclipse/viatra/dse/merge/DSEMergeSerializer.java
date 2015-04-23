@@ -14,14 +14,14 @@ import org.eclipse.viatra.dse.merge.model.Priority;
 import org.eclipse.viatra.dse.merge.model.Reference;
 import org.eclipse.viatra.dse.merge.model.Delete;
 import org.eclipse.viatra.dse.merge.queries.ExecutableDeleteChangeMatch;
-import org.eclipse.viatra.dse.merge.scope.DSEMergeInputScope;
+import org.eclipse.viatra.dse.merge.scope.DSEMergeScope;
 import org.eclipse.viatra.dse.statecode.IStateSerializer;
 
 public class DSEMergeSerializer implements IStateSerializer {
 
-	private DSEMergeInputScope scope;
+	private DSEMergeScope scope;
 
-	public DSEMergeSerializer(DSEMergeInputScope scope) {
+	public DSEMergeSerializer(DSEMergeScope scope) {
 		this.scope = scope;
 	}
 	
@@ -138,7 +138,7 @@ public class DSEMergeSerializer implements IStateSerializer {
 		ret += "Match|" + match.patternName() + "|(";
 		for (String param : match.parameterNames()) {
 			Object p = match.get(param);
-			if(p instanceof DSEMergeInputScope) {
+			if(p instanceof DSEMergeScope) {
 				ret += "scope;";
 			}
 			else if(p instanceof Change) {

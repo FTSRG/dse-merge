@@ -34,7 +34,7 @@ import org.eclipse.viatra.dse.merge.model.ChangeSet;
 import org.eclipse.viatra.dse.merge.model.ModelPackage;
 import org.eclipse.viatra.dse.merge.model.Priority;
 import org.eclipse.viatra.dse.merge.scope.Cemetery;
-import org.eclipse.viatra.dse.merge.scope.DSEMergeInputScope;
+import org.eclipse.viatra.dse.merge.scope.DSEMergeScope;
 import org.eclipse.viatra.dse.merge.scope.ScopePackage;
 import org.eclipse.viatra.dse.merge.train.AddAttributeMatch;
 import org.eclipse.viatra.dse.merge.train.AddReferenceMatch;
@@ -171,7 +171,7 @@ public class EMFCompareTest {
 		System.out.println("Found solutions:" + solutions.size());
 		
 		for (Solution solution : solutions) {
-			DSEMergeInputScope mergedSolution = solution.getScope();
+			DSEMergeScope mergedSolution = solution.getScope();
 			ChangeSet remainedLocalChange = mergedSolution.getLocal();
 			ChangeSet remainedRemoteChange = mergedSolution.getRemote();
 			EObject mergedModelRoot = mergedSolution.getOrigin();

@@ -9,11 +9,11 @@ import org.eclipse.viatra.dse.merge.model.Change;
 import org.eclipse.viatra.dse.merge.model.Delete;
 import org.eclipse.viatra.dse.merge.model.Kind;
 import org.eclipse.viatra.dse.merge.model.Reference;
-import org.eclipse.viatra.dse.merge.scope.DSEMergeInputScope;
+import org.eclipse.viatra.dse.merge.scope.DSEMergeScope;
 
 public class DefaultAddReferenceOperation {
 
-	public static void process(EObject pSrc, EObject pTrg, Reference pChange, DSEMergeInputScope pScope) {
+	public static void process(EObject pSrc, EObject pTrg, Reference pChange, DSEMergeScope pScope) {
 		@SuppressWarnings("unchecked")
 		EList<EObject> list = (EList<EObject>) pSrc.eGet(pChange.getFeature());
 		list.add(pTrg);
@@ -23,7 +23,7 @@ public class DefaultAddReferenceOperation {
 		EcoreUtil.delete(pChange);
 	}
 	
-	private static void update(DSEMergeInputScope pScope, Reference pChange) {
+	private static void update(DSEMergeScope pScope, Reference pChange) {
 		for(Delete d : DSEMergeStrategy.deleteDependencies.get(pChange.getSrc())) {
 			d.setExecutable(false);
 		}

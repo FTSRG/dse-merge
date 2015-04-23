@@ -9,10 +9,10 @@
   <foreignModel>scope.ecore</foreignModel>
   <genPackages prefix="Scope" basePackage="org.eclipse.viatra.dse.merge" disposableProviderFactory="true"
       ecorePackage="scope.ecore#/">
-    <genClasses ecoreClass="scope.ecore#//DSEMergeInputScope">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference scope.ecore#//DSEMergeInputScope/local"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference scope.ecore#//DSEMergeInputScope/remote"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference scope.ecore#//DSEMergeInputScope/origin"/>
+    <genClasses ecoreClass="scope.ecore#//DSEMergeScope">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference scope.ecore#//DSEMergeScope/local"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference scope.ecore#//DSEMergeScope/remote"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference scope.ecore#//DSEMergeScope/origin"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

@@ -26,8 +26,8 @@ import org.eclipse.viatra.dse.merge.model.Reference;
 import org.eclipse.viatra.dse.merge.queries.ExecutableDeleteChangeMatch;
 import org.eclipse.viatra.dse.merge.queries.ExecutableDeleteChangeMatcher;
 import org.eclipse.viatra.dse.merge.queries.util.ExecutableDeleteChangeQuerySpecification;
-import org.eclipse.viatra.dse.merge.scope.DSEMergeInputScope;
-import org.eclipse.viatra.dse.merge.scope.DSEMergeInputScope;
+import org.eclipse.viatra.dse.merge.scope.DSEMergeScope;
+import org.eclipse.viatra.dse.merge.scope.DSEMergeScope;
 import org.eclipse.viatra.dse.objectives.Fitness;
 
 import com.google.common.collect.ArrayListMultimap;
@@ -61,7 +61,7 @@ public class DSEMergeStrategy implements IStrategy {
 	}
 
 	private void initializeDeleteDependencies() throws Exception {
-		DSEMergeInputScope scope = (DSEMergeInputScope) context.getEditingDomain().getResourceSet().getResources().get(0).getContents().get(0);
+		DSEMergeScope scope = (DSEMergeScope) context.getEditingDomain().getResourceSet().getResources().get(0).getContents().get(0);
 		buildLocalDeleteDependencies(scope.getLocal(), scope.getRemote());
 		buildLocalDeleteDependencies(scope.getRemote(), scope.getLocal());
 	}

@@ -7,11 +7,11 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.viatra.dse.merge.DSEMergeStrategy;
 import org.eclipse.viatra.dse.merge.model.Create;
 import org.eclipse.viatra.dse.merge.model.Delete;
-import org.eclipse.viatra.dse.merge.scope.DSEMergeInputScope;
+import org.eclipse.viatra.dse.merge.scope.DSEMergeScope;
 
 public class DefaultCreateOperation {
 
-	public static void process(EObject pContainer, Create pChange, DSEMergeInputScope pScope) {
+	public static void process(EObject pContainer, Create pChange, DSEMergeScope pScope) {
 		EObject element = (EObject) EcoreUtil.create(pChange.getClazz());
 		EStructuralFeature feature = element.eClass().getEStructuralFeature("id");
 		element.eSet(feature, pChange.getSrc());
@@ -29,7 +29,7 @@ public class DefaultCreateOperation {
 		EcoreUtil.delete(pChange);
 	}
 
-	private static void update(DSEMergeInputScope pScope, Create pChange) {
+	private static void update(DSEMergeScope pScope, Create pChange) {
 		for(Delete d : DSEMergeStrategy.deleteDependencies.get(pChange.getSrc())) {
 			d.setExecutable(false);;
 		}

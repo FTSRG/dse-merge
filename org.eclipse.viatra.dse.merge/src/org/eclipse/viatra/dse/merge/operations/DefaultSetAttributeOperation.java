@@ -6,11 +6,11 @@ import org.eclipse.viatra.dse.merge.DSEMergeStrategy;
 import org.eclipse.viatra.dse.merge.model.Attribute;
 import org.eclipse.viatra.dse.merge.model.Change;
 import org.eclipse.viatra.dse.merge.model.Delete;
-import org.eclipse.viatra.dse.merge.scope.DSEMergeInputScope;
+import org.eclipse.viatra.dse.merge.scope.DSEMergeScope;
 
 public class DefaultSetAttributeOperation {
 
-	public static void process(EObject pSrc, Attribute pChange, DSEMergeInputScope pScope) {
+	public static void process(EObject pSrc, Attribute pChange, DSEMergeScope pScope) {
 		pSrc.eSet(pChange.getFeature(), pChange.getValue());
 	
 		update(pScope, pChange);
@@ -18,7 +18,7 @@ public class DefaultSetAttributeOperation {
 		EcoreUtil.delete(pChange);
 	}
 
-	private static void update(DSEMergeInputScope pScope, Attribute pChange) {
+	private static void update(DSEMergeScope pScope, Attribute pChange) {
 		for(Delete d : DSEMergeStrategy.deleteDependencies.get(pChange.getSrc())) {
 			d.setExecutable(false);;
 		}

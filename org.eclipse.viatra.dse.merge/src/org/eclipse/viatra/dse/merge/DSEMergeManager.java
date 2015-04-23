@@ -20,7 +20,7 @@ import org.eclipse.viatra.dse.merge.model.ChangeSet;
 import org.eclipse.viatra.dse.merge.model.ModelPackage;
 import org.eclipse.viatra.dse.merge.queries.ExecutableDeleteChangeMatch;
 import org.eclipse.viatra.dse.merge.queries.util.ExecutableDeleteChangeQuerySpecification;
-import org.eclipse.viatra.dse.merge.scope.DSEMergeInputScope;
+import org.eclipse.viatra.dse.merge.scope.DSEMergeScope;
 import org.eclipse.viatra.dse.merge.scope.ScopeFactory;
 import org.eclipse.viatra.dse.merge.scope.ScopePackage;
 import org.eclipse.viatra.dse.objectives.impl.ModelQueriesHardObjective;
@@ -33,7 +33,7 @@ public class DSEMergeManager {
 	private ChangeSet local;
 	private ChangeSet remote;
 	private EObject original; 
-	private DSEMergeInputScope scope;
+	private DSEMergeScope scope;
 	private DesignSpaceExplorer dse;
 	private EPackage metamodel;
 	
@@ -73,7 +73,7 @@ public class DSEMergeManager {
 		this.local = local;
 		this.remote = remote;
 		
-		scope = ScopeFactory.eINSTANCE.createDSEMergeInputScope();
+		scope = ScopeFactory.eINSTANCE.createDSEMergeScope();
 		scope.setRemote(remote);
 		scope.setLocal(local);
 		scope.setOrigin(original);	
@@ -132,7 +132,7 @@ public class DSEMergeManager {
 		}
 		return s;
 	}
-	public DSEMergeInputScope applyMerge(SolutionTrajectory trajectory) {
+	public DSEMergeScope applyMerge(SolutionTrajectory trajectory) {
 		try {
 			trajectory.setModel(scope);		
 			trajectory.doNextTransformation();
@@ -153,21 +153,21 @@ public class DSEMergeManager {
 	public class Solution {
 		
 		private org.eclipse.viatra.dse.api.Solution solution;
-		private DSEMergeInputScope scope;
+		private DSEMergeScope scope;
 		private boolean applied = false;
 		
-		public Solution(DSEMergeInputScope scope, org.eclipse.viatra.dse.api.Solution solution) {
+		public Solution(DSEMergeScope scope, org.eclipse.viatra.dse.api.Solution solution) {
 			this.scope = scope;
 			this.solution = solution;
 		}
 		
-		public DSEMergeInputScope getScope() {
+		public DSEMergeScope getScope() {
 			if(!applied)
 				return applyMerge();
 			return scope;
 		}
 		
-		private DSEMergeInputScope applyMerge() {
+		private DSEMergeScope applyMerge() {
 			try {
 				SolutionTrajectory trajectory = solution.getShortestTrajectory();
 				trajectory.setModel(this.scope);		

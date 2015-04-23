@@ -573,9 +573,9 @@
           <styles xmi:type="notation:DiagramStyle" xmi:id="_EEs1uMT6EeSfI8-NezoZSA"/>
         </data>
       </ownedAnnotationEntries>
-      <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_LIgPoMT6EeSfI8-NezoZSA" name="DSEMergeInputScope" tooltipText="" width="12" height="10">
-        <target xmi:type="ecore:EClass" href="scope.ecore#//DSEMergeInputScope"/>
-        <semanticElements xmi:type="ecore:EClass" href="scope.ecore#//DSEMergeInputScope"/>
+      <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_LIgPoMT6EeSfI8-NezoZSA" name="DSEMergeScope" tooltipText="" width="12" height="10">
+        <target xmi:type="ecore:EClass" href="scope.ecore#//DSEMergeScope"/>
+        <semanticElements xmi:type="ecore:EClass" href="scope.ecore#//DSEMergeScope"/>
         <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
         <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
         <arrangeConstraints>KEEP_RATIO</arrangeConstraints>

@@ -34,32 +34,32 @@ pattern id2object(eobject, id) {
 }
 
 
-pattern create(container : RailwayElement, change : Create, scope : DSEMergeInputScope) {
+pattern create(container : RailwayElement, change : Create, scope : DSEMergeScope) {
 	RailwayElement.id(container, c_id);
 	Create.container(change, c_id);
 	Change.executable(change, true);
-	DSEMergeInputScope.local.changes(scope, change);
+	DSEMergeScope.local.changes(scope, change);
 	
 } or {
 	RailwayElement.id(container, c_id);
 	Create.container(change, c_id);
 	Change.executable(change, true);
-	DSEMergeInputScope.remote.changes(scope, change);
+	DSEMergeScope.remote.changes(scope, change);
 }
 
-pattern delete(src : RailwayElement, change : Delete, scope : DSEMergeInputScope) {
+pattern delete(src : RailwayElement, change : Delete, scope : DSEMergeScope) {
 	RailwayElement.id(src, c_id);
 	Delete.src(change, c_id);
 	Change.executable(change, true);
-	DSEMergeInputScope.local.changes(scope, change);
+	DSEMergeScope.local.changes(scope, change);
 } or {
 	RailwayElement.id(src, c_id);
 	Delete.src(change, c_id);
 	Change.executable(change, true);
-	DSEMergeInputScope.remote.changes(scope, change);
+	DSEMergeScope.remote.changes(scope, change);
 }
 
-pattern setReference(src : RailwayElement, trg : RailwayElement, change : Reference, scope : DSEMergeInputScope) {
+pattern setReference(src : RailwayElement, trg : RailwayElement, change : Reference, scope : DSEMergeScope) {
 	RailwayElement.id(src, src_id);
 	Reference.src(change, src_id);
 
@@ -68,7 +68,7 @@ pattern setReference(src : RailwayElement, trg : RailwayElement, change : Refere
 
 	Reference.kind(change, ::set);
 	Change.executable(change, true);
-	DSEMergeInputScope.local.changes(scope, change);
+	DSEMergeScope.local.changes(scope, change);
 } or {
 	RailwayElement.id(src, src_id);
 	Reference.src(change, src_id);
@@ -78,24 +78,24 @@ pattern setReference(src : RailwayElement, trg : RailwayElement, change : Refere
 
 	Reference.kind(change, ::set);
 	Change.executable(change, true);
-	DSEMergeInputScope.remote.changes(scope, change);
+	DSEMergeScope.remote.changes(scope, change);
 }
-pattern unsetReference(src : RailwayElement, change : Reference, scope : DSEMergeInputScope) {
+pattern unsetReference(src : RailwayElement, change : Reference, scope : DSEMergeScope) {
 	RailwayElement.id(src, src_id);
 	Reference.src(change, src_id);
 
 	Reference.kind(change, ::set);
 	Change.executable(change, true);
-	DSEMergeInputScope.local.changes(scope, change);
+	DSEMergeScope.local.changes(scope, change);
 } or {
 	RailwayElement.id(src, src_id);
 	Reference.src(change, src_id);
 
 	Reference.kind(change, ::set);
 	Change.executable(change, true);
-	DSEMergeInputScope.remote.changes(scope, change);
+	DSEMergeScope.remote.changes(scope, change);
 }
-pattern addReference(src : RailwayElement, trg : RailwayElement, change : Reference, scope : DSEMergeInputScope) {
+pattern addReference(src : RailwayElement, trg : RailwayElement, change : Reference, scope : DSEMergeScope) {
 	RailwayElement.id(src, src_id);
 	Reference.src(change, src_id);
 
@@ -104,7 +104,7 @@ pattern addReference(src : RailwayElement, trg : RailwayElement, change : Refere
 
 	Reference.kind(change, ::add);
 	Change.executable(change, true);
-	DSEMergeInputScope.local.changes(scope, change);
+	DSEMergeScope.local.changes(scope, change);
 } or {
 	RailwayElement.id(src, src_id);
 	Reference.src(change, src_id);
@@ -114,9 +114,9 @@ pattern addReference(src : RailwayElement, trg : RailwayElement, change : Refere
 
 	Reference.kind(change, ::add);
 	Change.executable(change, true);
-	DSEMergeInputScope.remote.changes(scope, change);
+	DSEMergeScope.remote.changes(scope, change);
 }
-pattern removeReference(src : RailwayElement, trg : RailwayElement, change : Reference, scope : DSEMergeInputScope) {
+pattern removeReference(src : RailwayElement, trg : RailwayElement, change : Reference, scope : DSEMergeScope) {
 	RailwayElement.id(src, src_id);
 	Reference.src(change, src_id);
 
@@ -125,7 +125,7 @@ pattern removeReference(src : RailwayElement, trg : RailwayElement, change : Ref
 
 	Reference.kind(change, ::remove);
 	Change.executable(change, true);
-	DSEMergeInputScope.local.changes(scope, change);
+	DSEMergeScope.local.changes(scope, change);
 } or {
 	RailwayElement.id(src, src_id);
 	Reference.src(change, src_id);
@@ -135,50 +135,50 @@ pattern removeReference(src : RailwayElement, trg : RailwayElement, change : Ref
 
 	Reference.kind(change, ::remove);
 	Change.executable(change, true);
-	DSEMergeInputScope.remote.changes(scope, change);
+	DSEMergeScope.remote.changes(scope, change);
 }
-pattern setAttribute(src : RailwayElement, change : Attribute, scope : DSEMergeInputScope) {
+pattern setAttribute(src : RailwayElement, change : Attribute, scope : DSEMergeScope) {
 	RailwayElement.id(src, src_id);
 	Attribute.src(change, src_id);
 
 	Attribute.kind(change, ::set);
 	Change.executable(change, true);
-	DSEMergeInputScope.local.changes(scope, change);
+	DSEMergeScope.local.changes(scope, change);
 } or {
 	RailwayElement.id(src, src_id);
 	Attribute.src(change, src_id);
 
 	Attribute.kind(change, ::set);
 	Change.executable(change, true);
-	DSEMergeInputScope.remote.changes(scope, change);
+	DSEMergeScope.remote.changes(scope, change);
 }
-pattern addAttribute(src : RailwayElement, change : Attribute, scope : DSEMergeInputScope) {
+pattern addAttribute(src : RailwayElement, change : Attribute, scope : DSEMergeScope) {
 	RailwayElement.id(src, src_id);
 	Attribute.src(change, src_id);
 
 	Attribute.kind(change, ::add);
 	Change.executable(change, true);
-	DSEMergeInputScope.local.changes(scope, change);
+	DSEMergeScope.local.changes(scope, change);
 } or {
 	RailwayElement.id(src, src_id);
 	Attribute.src(change, src_id);
 
 	Attribute.kind(change, ::add);
 	Change.executable(change, true);
-	DSEMergeInputScope.remote.changes(scope, change);
+	DSEMergeScope.remote.changes(scope, change);
 }
-pattern removeAttribute(src : RailwayElement, change : Attribute, scope : DSEMergeInputScope) {
+pattern removeAttribute(src : RailwayElement, change : Attribute, scope : DSEMergeScope) {
 	RailwayElement.id(src, src_id);
 	Attribute.src(change, src_id);
 
 	Attribute.kind(change, ::remove);
 	Change.executable(change, true);
-	DSEMergeInputScope.local.changes(scope, change);
+	DSEMergeScope.local.changes(scope, change);
 } or {
 	RailwayElement.id(src, src_id);
 	Attribute.src(change, src_id);
 
 	Attribute.kind(change, ::remove);
 	Change.executable(change, true);
-	DSEMergeInputScope.remote.changes(scope, change);
+	DSEMergeScope.remote.changes(scope, change);
 }
