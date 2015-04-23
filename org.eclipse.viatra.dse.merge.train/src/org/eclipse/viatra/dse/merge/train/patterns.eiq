@@ -5,10 +5,6 @@ import "http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.ow
 import "http://www.eclipse.org/emf/2002/Ecore"
 import "http://org.eclipse.viatra.dse.merge/scope"
 
-pattern softConstraint(change : Change) {
-	Change.priority(change, ::must);
-}
-
 pattern goalPattern() {
 	find create(_,_,_);
 } or {
