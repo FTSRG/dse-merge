@@ -10,6 +10,8 @@ public class DefaultDeleteOperation {
 	public static void process(EObject pSrc, Delete pChange, DSEMergeInputScope pScope) {
 		EcoreUtil.delete(pSrc);
 		EcoreUtil.delete(pChange);
+		
+		pScope.getCemetery().getObjects().add(pSrc);
 	}
 
 }

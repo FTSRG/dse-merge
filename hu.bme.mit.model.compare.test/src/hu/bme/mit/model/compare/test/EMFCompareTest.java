@@ -5,6 +5,7 @@ import hu.bme.mit.trainbenchmark.railway.RailwayPackage;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.compare.Comparison;
 import org.eclipse.emf.compare.EMFCompare;
@@ -25,14 +26,14 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.incquery.runtime.api.IQuerySpecification;
 import org.eclipse.incquery.runtime.exception.IncQueryException;
-import org.eclipse.viatra.dse.api.Solution;
-import org.eclipse.viatra.dse.api.SolutionTrajectory;
 import org.eclipse.viatra.dse.api.TransformationRule;
 import org.eclipse.viatra.dse.merge.DSEMergeManager;
+import org.eclipse.viatra.dse.merge.DSEMergeManager.Solution;
 import org.eclipse.viatra.dse.merge.emf_compare.EMFCompareTranslator;
 import org.eclipse.viatra.dse.merge.model.ChangeSet;
 import org.eclipse.viatra.dse.merge.model.ModelPackage;
 import org.eclipse.viatra.dse.merge.model.Priority;
+import org.eclipse.viatra.dse.merge.scope.Cemetery;
 import org.eclipse.viatra.dse.merge.scope.DSEMergeInputScope;
 import org.eclipse.viatra.dse.merge.scope.ScopePackage;
 import org.eclipse.viatra.dse.merge.train.AddAttributeMatch;
@@ -170,13 +171,18 @@ public class EMFCompareTest {
 		System.out.println("Found solutions:" + solutions.size());
 		
 		for (Solution solution : solutions) {
-			SolutionTrajectory trajectory = solution.getShortestTrajectory();
-			DSEMergeInputScope mergedModel = manager.applyMerge(trajectory);
+			DSEMergeInputScope mergedSolution = solution.getScope();
+			ChangeSet remainedLocalChange = mergedSolution.getLocal();
+			ChangeSet remainedRemoteChange = mergedSolution.getRemote();
+			EObject mergedModelRoot = mergedSolution.getOrigin();
+			Cemetery cemetery = mergedSolution.getCemetery();
+			EList<EObject> deletedObjects = cemetery.getObjects();
+			
 			System.out.println("a solution is applied");
 			break;
 		}
 		
 		System.out.println("done");
 	}
-
+	
 }

@@ -13,7 +13,6 @@ import org.eclipse.incquery.runtime.api.IQuerySpecification;
 import org.eclipse.incquery.runtime.api.IncQueryMatcher;
 import org.eclipse.incquery.runtime.exception.IncQueryException;
 import org.eclipse.viatra.dse.api.DesignSpaceExplorer;
-import org.eclipse.viatra.dse.api.Solution;
 import org.eclipse.viatra.dse.api.SolutionTrajectory;
 import org.eclipse.viatra.dse.api.TransformationRule;
 import org.eclipse.viatra.dse.base.DesignSpaceManager;
@@ -26,6 +25,8 @@ import org.eclipse.viatra.dse.merge.scope.ScopeFactory;
 import org.eclipse.viatra.dse.merge.scope.ScopePackage;
 import org.eclipse.viatra.dse.objectives.impl.ModelQueriesHardObjective;
 import org.eclipse.viatra.dse.objectives.impl.ModelQueryType;
+
+import com.google.common.collect.Lists;
 
 public class DSEMergeManager {
 
@@ -76,6 +77,7 @@ public class DSEMergeManager {
 		scope.setRemote(remote);
 		scope.setLocal(local);
 		scope.setOrigin(original);	
+		scope.setCemetery(ScopeFactory.eINSTANCE.createCemetery());
 		
 		dse = new DesignSpaceExplorer();
 	}
@@ -120,9 +122,16 @@ public class DSEMergeManager {
 		dse.startExploration(strategy);
 		dse.prettyPrintSolutions();
 		
-		return dse.getSolutions();
+		return buildSolutions(dse.getSolutions());
 	}
 	
+	private Collection<Solution> buildSolutions(Collection<org.eclipse.viatra.dse.api.Solution> solutions) {
+		Collection<Solution> s = Lists.newArrayList();
+		for (org.eclipse.viatra.dse.api.Solution solution : solutions) {
+			s.add(new Solution(scope, solution));
+		}
+		return s;
+	}
 	public DSEMergeInputScope applyMerge(SolutionTrajectory trajectory) {
 		try {
 			trajectory.setModel(scope);		
@@ -139,5 +148,35 @@ public class DSEMergeManager {
 		public void process(T match) {
 		}
 		
+	}
+	
+	public class Solution {
+		
+		private org.eclipse.viatra.dse.api.Solution solution;
+		private DSEMergeInputScope scope;
+		private boolean applied = false;
+		
+		public Solution(DSEMergeInputScope scope, org.eclipse.viatra.dse.api.Solution solution) {
+			this.scope = scope;
+			this.solution = solution;
+		}
+		
+		public DSEMergeInputScope getScope() {
+			if(!applied)
+				return applyMerge();
+			return scope;
+		}
+		
+		private DSEMergeInputScope applyMerge() {
+			try {
+				SolutionTrajectory trajectory = solution.getShortestTrajectory();
+				trajectory.setModel(this.scope);		
+				trajectory.doNextTransformation();
+				applied = true;
+			} catch (IncQueryException e) {
+				e.printStackTrace();
+			}
+			return this.scope;
+		}
 	}
 }
