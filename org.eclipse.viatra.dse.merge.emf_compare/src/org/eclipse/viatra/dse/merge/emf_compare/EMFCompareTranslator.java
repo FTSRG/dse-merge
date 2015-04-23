@@ -103,8 +103,10 @@ public class EMFCompareTranslator {
 		reference.setFeature(diff.getReference());
 		reference.setSrc((long) object.eGet(feature));
 		Object target = object.eGet(diff.getReference());
-		if(target != null)
+		if(target != null) {
+			if(diff.getMatch().getComparison().getMatch(diff.getValue()).getLeft() == null) return;
 			reference.setTrg((long) ((EObject)diff.getValue()).eGet(feature));
+		}
 		reference.setExecutable(true);
 		
 			switch (diff.getKind()) {
