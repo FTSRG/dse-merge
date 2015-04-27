@@ -100,7 +100,7 @@ public class EMFCompareTest {
 		
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap( ).put("railway", new XMIResourceFactoryImpl());
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap( ).put("emf", new XMIResourceFactoryImpl());
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap( ).put("dummy", new XMIResourceFactoryImpl());
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap( ).put("DUMMY", new XMIResourceFactoryImpl());
 		
 		ResourceSet original = new ResourceSetImpl();
 		ResourceSet local = new ResourceSetImpl();

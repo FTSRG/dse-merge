@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="ASCII"?>
+<hu.bme.mit.trainbenchmark:RailwayContainer xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hu.bme.mit.trainbenchmark="http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl">
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Signal" id="1" Signal_currentState="GO"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Signal" id="2" Signal_currentState="GO"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Route" id="3" Route_switchPosition="//@contains.19 //@contains.25 //@contains.31 //@contains.33 //@contains.35 //@contains.53 //@contains.59 //@contains.78 //@contains.97 //@contains.118 //@contains.124 //@contains.140 //@contains.161 //@contains.175 //@contains.180 //@contains.184 //@contains.198 //@contains.210 //@contains.218" Route_exit="//@contains.1" Route_routeDefinition="//@contains.4 //@contains.6 //@contains.8 //@contains.13 //@contains.15 //@contains.17 //@contains.21 //@contains.23 //@contains.27 //@contains.29 //@contains.39 //@contains.41 //@contains.43 //@contains.45 //@contains.47 //@contains.49 //@contains.51 //@contains.55 //@contains.57 //@contains.61 //@contains.63 //@contains.66 //@contains.68 //@contains.70 //@contains.72 //@contains.74 //@contains.76 //@contains.80 //@contains.82 //@contains.84 //@contains.86 //@contains.88 //@contains.93 //@contains.95 //@contains.99 //@contains.101 //@contains.103 //@contains.105 //@contains.107 //@contains.109 //@contains.111 //@contains.113 //@contains.116 //@contains.120 //@contains.122 //@contains.126 //@contains.128 //@contains.130 //@contains.132 //@contains.134 //@contains.138 //@contains.142 //@contains.145 //@contains.149 //@contains.151 //@contains.153 //@contains.155 //@contains.157 //@contains.159 //@contains.163 //@contains.165 //@contains.167 //@contains.169 //@contains.171 //@contains.173 //@contains.177 //@contains.182 //@contains.188 //@contains.190 //@contains.192 //@contains.194 //@contains.196 //@contains.200 //@contains.202 //@contains.206 //@contains.212 //@contains.214 //@contains.216"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Switch" id="4" TrackElement_sensor="//@contains.4 //@contains.6 //@contains.8 //@contains.11 //@contains.13 //@contains.15 //@contains.17" TrackElement_connectsTo="//@contains.5" Switch_currentState="STRAIGHT" Switch_switchPosition="//@contains.19"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="5" Sensor_trackElement="//@contains.3 //@contains.5"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="6" TrackElement_sensor="//@contains.4" TrackElement_connectsTo="//@contains.7" Segment_length="460"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="7" Sensor_trackElement="//@contains.3 //@contains.7"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="8" TrackElement_sensor="//@contains.6" TrackElement_connectsTo="//@contains.9" Segment_length="394"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="9" Sensor_trackElement="//@contains.3 //@contains.9 //@contains.10"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="10" TrackElement_sensor="//@contains.8" TrackElement_connectsTo="//@contains.10" Segment_length="802"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="11" TrackElement_sensor="//@contains.8" TrackElement_connectsTo="//@contains.12" Segment_length="293"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="12" Sensor_trackElement="//@contains.3 //@contains.12"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="13" TrackElement_sensor="//@contains.11" TrackElement_connectsTo="//@contains.14" Segment_length="596"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="14" Sensor_trackElement="//@contains.3 //@contains.14"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="15" TrackElement_sensor="//@contains.13" TrackElement_connectsTo="//@contains.16" Segment_length="830"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="16" Sensor_trackElement="//@contains.3 //@contains.16"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="17" TrackElement_sensor="//@contains.15" TrackElement_connectsTo="//@contains.18" Segment_length="196"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="18" Sensor_trackElement="//@contains.3 //@contains.18"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="19" TrackElement_sensor="//@contains.17" TrackElement_connectsTo="//@contains.20" Segment_length="454"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:SwitchPosition" id="20" SwitchPosition_switch="//@contains.3" SwitchPosition_switchState="STRAIGHT" SwitchPosition_route="//@contains.2"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Switch" id="21" TrackElement_sensor="//@contains.21 //@contains.23" TrackElement_connectsTo="//@contains.22" Switch_switchPosition="//@contains.25"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="22" Sensor_trackElement="//@contains.20 //@contains.22"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="23" TrackElement_sensor="//@contains.21" TrackElement_connectsTo="//@contains.24" Segment_length="993"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="24" Sensor_trackElement="//@contains.20 //@contains.24"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="25" TrackElement_sensor="//@contains.23" TrackElement_connectsTo="//@contains.26" Segment_length="179"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:SwitchPosition" id="26" SwitchPosition_switch="//@contains.20" SwitchPosition_route="//@contains.2"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Switch" id="27" TrackElement_sensor="//@contains.27 //@contains.29" TrackElement_connectsTo="//@contains.28" Switch_switchPosition="//@contains.31"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="28" Sensor_trackElement="//@contains.26 //@contains.28"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="29" TrackElement_sensor="//@contains.27" TrackElement_connectsTo="//@contains.30" Segment_length="654"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="30" Sensor_trackElement="//@contains.26 //@contains.30"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="31" TrackElement_sensor="//@contains.29" TrackElement_connectsTo="//@contains.32" Segment_length="233"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:SwitchPosition" id="32" SwitchPosition_switch="//@contains.26" SwitchPosition_route="//@contains.2"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Switch" id="33" TrackElement_connectsTo="//@contains.34" Switch_currentState="RIGHT" Switch_switchPosition="//@contains.33"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:SwitchPosition" id="34" SwitchPosition_switch="//@contains.32" SwitchPosition_switchState="RIGHT" SwitchPosition_route="//@contains.2"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Switch" id="35" TrackElement_connectsTo="//@contains.36" Switch_switchPosition="//@contains.35"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:SwitchPosition" id="36" SwitchPosition_switch="//@contains.34" SwitchPosition_route="//@contains.2"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Switch" id="37" TrackElement_sensor="//@contains.37 //@contains.39 //@contains.41 //@contains.43 //@contains.45 //@contains.47 //@contains.49 //@contains.51" TrackElement_connectsTo="//@contains.38" Switch_currentState="STRAIGHT" Switch_switchPosition="//@contains.53"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="38" Sensor_trackElement="//@contains.36 //@contains.38"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="39" TrackElement_sensor="//@contains.37" TrackElement_connectsTo="//@contains.40" Segment_length="720"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="40" Sensor_trackElement="//@contains.36 //@contains.40"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="41" TrackElement_sensor="//@contains.39" TrackElement_connectsTo="//@contains.42" Segment_length="852"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="42" Sensor_trackElement="//@contains.36 //@contains.42"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="43" TrackElement_sensor="//@contains.41" TrackElement_connectsTo="//@contains.44" Segment_length="339"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="44" Sensor_trackElement="//@contains.36 //@contains.44"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="45" TrackElement_sensor="//@contains.43" TrackElement_connectsTo="//@contains.46" Segment_length="514"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="46" Sensor_trackElement="//@contains.36 //@contains.46"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="47" TrackElement_sensor="//@contains.45" TrackElement_connectsTo="//@contains.48" Segment_length="851"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="48" Sensor_trackElement="//@contains.36 //@contains.48"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="49" TrackElement_sensor="//@contains.47" TrackElement_connectsTo="//@contains.50" Segment_length="900"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="50" Sensor_trackElement="//@contains.36 //@contains.50"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="51" TrackElement_sensor="//@contains.49" TrackElement_connectsTo="//@contains.52" Segment_length="324"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="52" Sensor_trackElement="//@contains.36 //@contains.52"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="53" TrackElement_sensor="//@contains.51" TrackElement_connectsTo="//@contains.54" Segment_length="136"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:SwitchPosition" id="54" SwitchPosition_switch="//@contains.36" SwitchPosition_switchState="STRAIGHT" SwitchPosition_route="//@contains.2"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Switch" id="55" TrackElement_sensor="//@contains.55 //@contains.57" TrackElement_connectsTo="//@contains.56" Switch_switchPosition="//@contains.59"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="56" Sensor_trackElement="//@contains.54 //@contains.56"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="57" TrackElement_sensor="//@contains.55" TrackElement_connectsTo="//@contains.58" Segment_length="585"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="58" Sensor_trackElement="//@contains.54 //@contains.58"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="59" TrackElement_sensor="//@contains.57" TrackElement_connectsTo="//@contains.60" Segment_length="22"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:SwitchPosition" id="60" SwitchPosition_switch="//@contains.54" SwitchPosition_route="//@contains.2"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Switch" id="61" TrackElement_sensor="//@contains.61 //@contains.63 //@contains.66 //@contains.68 //@contains.70 //@contains.72 //@contains.74 //@contains.76" TrackElement_connectsTo="//@contains.62" Switch_currentState="LEFT" Switch_switchPosition="//@contains.78"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="62" Sensor_trackElement="//@contains.60 //@contains.62"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="63" TrackElement_sensor="//@contains.61" TrackElement_connectsTo="//@contains.64" Segment_length="397"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="64" Sensor_trackElement="//@contains.60 //@contains.64 //@contains.65"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="65" TrackElement_sensor="//@contains.63" TrackElement_connectsTo="//@contains.65" Segment_length="487"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="66" TrackElement_sensor="//@contains.63" TrackElement_connectsTo="//@contains.67" Segment_length="436"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="67" Sensor_trackElement="//@contains.60 //@contains.67"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="68" TrackElement_sensor="//@contains.66" TrackElement_connectsTo="//@contains.69" Segment_length="624"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="69" Sensor_trackElement="//@contains.60 //@contains.69"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="70" TrackElement_sensor="//@contains.68" TrackElement_connectsTo="//@contains.71" Segment_length="892"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="71" Sensor_trackElement="//@contains.60 //@contains.71"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="72" TrackElement_sensor="//@contains.70" TrackElement_connectsTo="//@contains.73" Segment_length="241"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="73" Sensor_trackElement="//@contains.60 //@contains.73"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="74" TrackElement_sensor="//@contains.72" TrackElement_connectsTo="//@contains.75" Segment_length="433"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="75" Sensor_trackElement="//@contains.60 //@contains.75"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="76" TrackElement_sensor="//@contains.74" TrackElement_connectsTo="//@contains.77" Segment_length="-823"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="77" Sensor_trackElement="//@contains.60 //@contains.77"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="78" TrackElement_sensor="//@contains.76" TrackElement_connectsTo="//@contains.79" Segment_length="381"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:SwitchPosition" id="79" SwitchPosition_switch="//@contains.60" SwitchPosition_switchState="LEFT" SwitchPosition_route="//@contains.2"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Switch" id="80" TrackElement_sensor="//@contains.80 //@contains.82 //@contains.84 //@contains.86 //@contains.88 //@contains.93 //@contains.95" TrackElement_connectsTo="//@contains.81" Switch_currentState="LEFT" Switch_switchPosition="//@contains.97"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="81" Sensor_trackElement="//@contains.79 //@contains.81"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="82" TrackElement_sensor="//@contains.80" TrackElement_connectsTo="//@contains.83" Segment_length="920"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="83" Sensor_trackElement="//@contains.79 //@contains.83"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="84" TrackElement_sensor="//@contains.82" TrackElement_connectsTo="//@contains.85" Segment_length="330"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="85" Sensor_trackElement="//@contains.79 //@contains.85"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="86" TrackElement_sensor="//@contains.84" TrackElement_connectsTo="//@contains.87" Segment_length="735"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="87" Sensor_trackElement="//@contains.79 //@contains.87"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="88" TrackElement_sensor="//@contains.86" TrackElement_connectsTo="//@contains.89" Segment_length="487"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="89" Sensor_trackElement="//@contains.79 //@contains.89 //@contains.90"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="90" TrackElement_sensor="//@contains.88" TrackElement_connectsTo="//@contains.90" Segment_length="213"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="91" TrackElement_sensor="//@contains.88" TrackElement_connectsTo="//@contains.92" Segment_length="516"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="92" Sensor_trackElement="//@contains.92"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="93" TrackElement_sensor="//@contains.91" TrackElement_connectsTo="//@contains.94" Segment_length="592"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="94" Sensor_trackElement="//@contains.79 //@contains.94"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="95" TrackElement_sensor="//@contains.93" TrackElement_connectsTo="//@contains.96" Segment_length="461"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="96" Sensor_trackElement="//@contains.79 //@contains.96"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="97" TrackElement_sensor="//@contains.95" TrackElement_connectsTo="//@contains.98" Segment_length="224"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:SwitchPosition" id="98" SwitchPosition_switch="//@contains.79" SwitchPosition_switchState="LEFT" SwitchPosition_route="//@contains.2"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Switch" id="99" TrackElement_sensor="//@contains.99 //@contains.101 //@contains.103 //@contains.105 //@contains.107 //@contains.109 //@contains.111 //@contains.113 //@contains.116" TrackElement_connectsTo="//@contains.100" Switch_currentState="RIGHT" Switch_switchPosition="//@contains.118"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="100" Sensor_trackElement="//@contains.98 //@contains.100"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="101" TrackElement_sensor="//@contains.99" TrackElement_connectsTo="//@contains.102" Segment_length="781"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="102" Sensor_trackElement="//@contains.98 //@contains.102"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="103" TrackElement_sensor="//@contains.101" TrackElement_connectsTo="//@contains.104" Segment_length="-616"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="104" Sensor_trackElement="//@contains.98 //@contains.104"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="105" TrackElement_sensor="//@contains.103" TrackElement_connectsTo="//@contains.106" Segment_length="509"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="106" Sensor_trackElement="//@contains.98 //@contains.106"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="107" TrackElement_sensor="//@contains.105" TrackElement_connectsTo="//@contains.108" Segment_length="880"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="108" Sensor_trackElement="//@contains.98 //@contains.108"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="109" TrackElement_sensor="//@contains.107" TrackElement_connectsTo="//@contains.110" Segment_length="520"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="110" Sensor_trackElement="//@contains.98 //@contains.110"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="111" TrackElement_sensor="//@contains.109" TrackElement_connectsTo="//@contains.112" Segment_length="808"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="112" Sensor_trackElement="//@contains.98 //@contains.112"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="113" TrackElement_sensor="//@contains.111" TrackElement_connectsTo="//@contains.114" Segment_length="90"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="114" Sensor_trackElement="//@contains.98 //@contains.114 //@contains.115"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="115" TrackElement_sensor="//@contains.113" TrackElement_connectsTo="//@contains.115" Segment_length="952"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="116" TrackElement_sensor="//@contains.113" TrackElement_connectsTo="//@contains.117" Segment_length="336"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="117" Sensor_trackElement="//@contains.98 //@contains.117"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="118" TrackElement_sensor="//@contains.116" TrackElement_connectsTo="//@contains.119" Segment_length="685"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:SwitchPosition" id="119" SwitchPosition_switch="//@contains.98" SwitchPosition_switchState="RIGHT" SwitchPosition_route="//@contains.2"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Switch" id="120" TrackElement_sensor="//@contains.120 //@contains.122" TrackElement_connectsTo="//@contains.121" Switch_currentState="STRAIGHT" Switch_switchPosition="//@contains.124"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="121" Sensor_trackElement="//@contains.119 //@contains.121"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="122" TrackElement_sensor="//@contains.120" TrackElement_connectsTo="//@contains.123" Segment_length="869"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="123" Sensor_trackElement="//@contains.119 //@contains.123"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="124" TrackElement_sensor="//@contains.122" TrackElement_connectsTo="//@contains.125" Segment_length="791"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:SwitchPosition" id="125" SwitchPosition_switch="//@contains.119" SwitchPosition_switchState="STRAIGHT" SwitchPosition_route="//@contains.2"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Switch" id="126" TrackElement_sensor="//@contains.126 //@contains.128 //@contains.130 //@contains.132 //@contains.134 //@contains.136 //@contains.138" TrackElement_connectsTo="//@contains.127" Switch_switchPosition="//@contains.140"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="127" Sensor_trackElement="//@contains.125 //@contains.127"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="128" TrackElement_sensor="//@contains.126" TrackElement_connectsTo="//@contains.129" Segment_length="464"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="129" Sensor_trackElement="//@contains.125 //@contains.129"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="130" TrackElement_sensor="//@contains.128" TrackElement_connectsTo="//@contains.131" Segment_length="604"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="131" Sensor_trackElement="//@contains.125 //@contains.131"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="132" TrackElement_sensor="//@contains.130" TrackElement_connectsTo="//@contains.133" Segment_length="963"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="133" Sensor_trackElement="//@contains.125 //@contains.133"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="134" TrackElement_sensor="//@contains.132" TrackElement_connectsTo="//@contains.135" Segment_length="465"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="135" Sensor_trackElement="//@contains.125 //@contains.135"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="136" TrackElement_sensor="//@contains.134" TrackElement_connectsTo="//@contains.137" Segment_length="403"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="137" Sensor_trackElement="//@contains.125 //@contains.137"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="138" TrackElement_sensor="//@contains.136" TrackElement_connectsTo="//@contains.139" Segment_length="609"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="139" Sensor_trackElement="//@contains.125 //@contains.139"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="140" TrackElement_sensor="//@contains.138" TrackElement_connectsTo="//@contains.141" Segment_length="917"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:SwitchPosition" id="141" SwitchPosition_switch="//@contains.125" SwitchPosition_route="//@contains.2"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Switch" id="142" TrackElement_sensor="//@contains.142 //@contains.145 //@contains.147 //@contains.149 //@contains.151 //@contains.153 //@contains.155 //@contains.157 //@contains.159" TrackElement_connectsTo="//@contains.143" Switch_switchPosition="//@contains.161"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="143" Sensor_trackElement="//@contains.141 //@contains.143 //@contains.144"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="144" TrackElement_sensor="//@contains.142" TrackElement_connectsTo="//@contains.144" Segment_length="713"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="145" TrackElement_sensor="//@contains.142" TrackElement_connectsTo="//@contains.146" Segment_length="533"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="146" Sensor_trackElement="//@contains.141 //@contains.146"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="147" TrackElement_sensor="//@contains.145" TrackElement_connectsTo="//@contains.148" Segment_length="368"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="148" Sensor_trackElement="//@contains.141 //@contains.148"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="149" TrackElement_sensor="//@contains.147" TrackElement_connectsTo="//@contains.150" Segment_length="347"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="150" Sensor_trackElement="//@contains.141 //@contains.150"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="151" TrackElement_sensor="//@contains.149" TrackElement_connectsTo="//@contains.152" Segment_length="772"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="152" Sensor_trackElement="//@contains.141 //@contains.152"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="153" TrackElement_sensor="//@contains.151" TrackElement_connectsTo="//@contains.154" Segment_length="808"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="154" Sensor_trackElement="//@contains.141 //@contains.154"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="155" TrackElement_sensor="//@contains.153" TrackElement_connectsTo="//@contains.156" Segment_length="135"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="156" Sensor_trackElement="//@contains.141 //@contains.156"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="157" TrackElement_sensor="//@contains.155" TrackElement_connectsTo="//@contains.158" Segment_length="856"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="158" Sensor_trackElement="//@contains.141 //@contains.158"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="159" TrackElement_sensor="//@contains.157" TrackElement_connectsTo="//@contains.160" Segment_length="772"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="160" Sensor_trackElement="//@contains.141 //@contains.160"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="161" TrackElement_sensor="//@contains.159" TrackElement_connectsTo="//@contains.162" Segment_length="642"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:SwitchPosition" id="162" SwitchPosition_switch="//@contains.141" SwitchPosition_route="//@contains.2"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Switch" id="163" TrackElement_sensor="//@contains.163 //@contains.165 //@contains.167 //@contains.169 //@contains.171 //@contains.173" TrackElement_connectsTo="//@contains.164" Switch_currentState="LEFT" Switch_switchPosition="//@contains.175"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="164" Sensor_trackElement="//@contains.162 //@contains.164"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="165" TrackElement_sensor="//@contains.163" TrackElement_connectsTo="//@contains.166" Segment_length="904"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="166" Sensor_trackElement="//@contains.162 //@contains.166"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="167" TrackElement_sensor="//@contains.165" TrackElement_connectsTo="//@contains.168" Segment_length="782"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="168" Sensor_trackElement="//@contains.162 //@contains.168"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="169" TrackElement_sensor="//@contains.167" TrackElement_connectsTo="//@contains.170" Segment_length="35"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="170" Sensor_trackElement="//@contains.162 //@contains.170"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="171" TrackElement_sensor="//@contains.169" TrackElement_connectsTo="//@contains.172" Segment_length="149"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="172" Sensor_trackElement="//@contains.162 //@contains.172"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="173" TrackElement_sensor="//@contains.171" TrackElement_connectsTo="//@contains.174" Segment_length="631"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="174" Sensor_trackElement="//@contains.162 //@contains.174"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="175" TrackElement_sensor="//@contains.173" TrackElement_connectsTo="//@contains.176" Segment_length="-545"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:SwitchPosition" id="176" SwitchPosition_switch="//@contains.162" SwitchPosition_switchState="LEFT" SwitchPosition_route="//@contains.2"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Switch" id="177" TrackElement_sensor="//@contains.177" TrackElement_connectsTo="//@contains.178" Switch_currentState="LEFT" Switch_switchPosition="//@contains.180"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="178" Sensor_trackElement="//@contains.176 //@contains.178 //@contains.179"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="179" TrackElement_sensor="//@contains.177" TrackElement_connectsTo="//@contains.179" Segment_length="575"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="180" TrackElement_sensor="//@contains.177" TrackElement_connectsTo="//@contains.181" Segment_length="385"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:SwitchPosition" id="181" SwitchPosition_switch="//@contains.176" SwitchPosition_switchState="LEFT" SwitchPosition_route="//@contains.2"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Switch" id="182" TrackElement_sensor="//@contains.182" TrackElement_connectsTo="//@contains.183" Switch_switchPosition="//@contains.184"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="183" Sensor_trackElement="//@contains.181 //@contains.183"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="184" TrackElement_sensor="//@contains.182" TrackElement_connectsTo="//@contains.185" Segment_length="41"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:SwitchPosition" id="185" SwitchPosition_switch="//@contains.181" SwitchPosition_route="//@contains.2"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Switch" id="186" TrackElement_sensor="//@contains.186 //@contains.188 //@contains.190 //@contains.192 //@contains.194 //@contains.196" TrackElement_connectsTo="//@contains.187" Switch_currentState="RIGHT" Switch_switchPosition="//@contains.198"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="187" Sensor_trackElement="//@contains.185 //@contains.187"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="188" TrackElement_sensor="//@contains.186" TrackElement_connectsTo="//@contains.189" Segment_length="846"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="189" Sensor_trackElement="//@contains.185 //@contains.189"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="190" TrackElement_sensor="//@contains.188" TrackElement_connectsTo="//@contains.191" Segment_length="269"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="191" Sensor_trackElement="//@contains.185 //@contains.191"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="192" TrackElement_sensor="//@contains.190" TrackElement_connectsTo="//@contains.193" Segment_length="46"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="193" Sensor_trackElement="//@contains.185 //@contains.193"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="194" TrackElement_sensor="//@contains.192" TrackElement_connectsTo="//@contains.195" Segment_length="449"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="195" Sensor_trackElement="//@contains.185 //@contains.195"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="196" TrackElement_sensor="//@contains.194" TrackElement_connectsTo="//@contains.197" Segment_length="94"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="197" Sensor_trackElement="//@contains.185 //@contains.197"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="198" TrackElement_sensor="//@contains.196" TrackElement_connectsTo="//@contains.199" Segment_length="535"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:SwitchPosition" id="199" SwitchPosition_switch="//@contains.185" SwitchPosition_switchState="RIGHT" SwitchPosition_route="//@contains.2"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Switch" id="200" TrackElement_sensor="//@contains.200 //@contains.202 //@contains.206 //@contains.208" TrackElement_connectsTo="//@contains.201" Switch_currentState="RIGHT" Switch_switchPosition="//@contains.210"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="201" Sensor_trackElement="//@contains.199 //@contains.201"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="202" TrackElement_sensor="//@contains.200" TrackElement_connectsTo="//@contains.203" Segment_length="60"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="203" Sensor_trackElement="//@contains.199 //@contains.203"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="204" TrackElement_sensor="//@contains.202" TrackElement_connectsTo="//@contains.205" Segment_length="933"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="205" Sensor_trackElement="//@contains.205"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="206" TrackElement_sensor="//@contains.204" TrackElement_connectsTo="//@contains.207" Segment_length="570"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="207" Sensor_trackElement="//@contains.199 //@contains.207"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="208" TrackElement_sensor="//@contains.206" TrackElement_connectsTo="//@contains.209" Segment_length="968"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="209" Sensor_trackElement="//@contains.199 //@contains.209"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="210" TrackElement_sensor="//@contains.208" TrackElement_connectsTo="//@contains.211" Segment_length="160"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:SwitchPosition" id="211" SwitchPosition_switch="//@contains.199" SwitchPosition_switchState="RIGHT" SwitchPosition_route="//@contains.2"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Switch" id="212" TrackElement_sensor="//@contains.212 //@contains.214 //@contains.216" TrackElement_connectsTo="//@contains.213" Switch_currentState="LEFT" Switch_switchPosition="//@contains.218"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="213" Sensor_trackElement="//@contains.211 //@contains.213"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="214" TrackElement_sensor="//@contains.212" TrackElement_connectsTo="//@contains.215" Segment_length="670"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="215" Sensor_trackElement="//@contains.211 //@contains.215"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="216" TrackElement_sensor="//@contains.214" TrackElement_connectsTo="//@contains.217" Segment_length="78"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="217" Sensor_trackElement="//@contains.211 //@contains.217"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="218" TrackElement_sensor="//@contains.216" TrackElement_connectsTo="//@contains.220" Segment_length="921"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:SwitchPosition" id="219" SwitchPosition_switch="//@contains.211" SwitchPosition_switchState="LEFT" SwitchPosition_route="//@contains.2"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Route" id="220" Route_entry="//@contains.1" Route_switchPosition="//@contains.237 //@contains.255 //@contains.275 //@contains.292 //@contains.304 //@contains.325 //@contains.337 //@contains.347" Route_exit="//@contains.0" Route_routeDefinition="//@contains.221 //@contains.223 //@contains.225 //@contains.227 //@contains.229 //@contains.231 //@contains.233 //@contains.235 //@contains.239 //@contains.241 //@contains.243 //@contains.245 //@contains.247 //@contains.249 //@contains.251 //@contains.253 //@contains.259 //@contains.263 //@contains.265 //@contains.267 //@contains.269 //@contains.271 //@contains.273 //@contains.277 //@contains.280 //@contains.282 //@contains.284 //@contains.286 //@contains.288 //@contains.290 //@contains.294 //@contains.296 //@contains.298 //@contains.300 //@contains.302 //@contains.306 //@contains.308 //@contains.310 //@contains.316 //@contains.318 //@contains.320 //@contains.323 //@contains.327 //@contains.329 //@contains.331 //@contains.333 //@contains.335 //@contains.339 //@contains.345"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Switch" id="221" TrackElement_sensor="//@contains.221 //@contains.223 //@contains.225 //@contains.227 //@contains.229 //@contains.231 //@contains.233 //@contains.235" TrackElement_connectsTo="//@contains.222" Switch_switchPosition="//@contains.237"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="222" Sensor_trackElement="//@contains.220 //@contains.222"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="223" TrackElement_sensor="//@contains.221" TrackElement_connectsTo="//@contains.224" Segment_length="631"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="224" Sensor_trackElement="//@contains.220 //@contains.224"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="225" TrackElement_sensor="//@contains.223" TrackElement_connectsTo="//@contains.226" Segment_length="319"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="226" Sensor_trackElement="//@contains.220 //@contains.226"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="227" TrackElement_sensor="//@contains.225" TrackElement_connectsTo="//@contains.228" Segment_length="160"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="228" Sensor_trackElement="//@contains.220 //@contains.228"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="229" TrackElement_sensor="//@contains.227" TrackElement_connectsTo="//@contains.230" Segment_length="-466"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="230" Sensor_trackElement="//@contains.220 //@contains.230"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="231" TrackElement_sensor="//@contains.229" TrackElement_connectsTo="//@contains.232" Segment_length="181"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="232" Sensor_trackElement="//@contains.220 //@contains.232"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="233" TrackElement_sensor="//@contains.231" TrackElement_connectsTo="//@contains.234" Segment_length="899"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="234" Sensor_trackElement="//@contains.220 //@contains.234"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="235" TrackElement_sensor="//@contains.233" TrackElement_connectsTo="//@contains.236" Segment_length="162"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="236" Sensor_trackElement="//@contains.220 //@contains.236"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="237" TrackElement_sensor="//@contains.235" TrackElement_connectsTo="//@contains.238" Segment_length="988"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:SwitchPosition" id="238" SwitchPosition_switch="//@contains.220" SwitchPosition_route="//@contains.219"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Switch" id="239" TrackElement_sensor="//@contains.239 //@contains.241 //@contains.243 //@contains.245 //@contains.247 //@contains.249 //@contains.251 //@contains.253" TrackElement_connectsTo="//@contains.240" Switch_currentState="RIGHT" Switch_switchPosition="//@contains.255"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="240" Sensor_trackElement="//@contains.238 //@contains.240"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="241" TrackElement_sensor="//@contains.239" TrackElement_connectsTo="//@contains.242" Segment_length="915"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="242" Sensor_trackElement="//@contains.238 //@contains.242"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="243" TrackElement_sensor="//@contains.241" TrackElement_connectsTo="//@contains.244" Segment_length="682"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="244" Sensor_trackElement="//@contains.238 //@contains.244"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="245" TrackElement_sensor="//@contains.243" TrackElement_connectsTo="//@contains.246" Segment_length="595"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="246" Sensor_trackElement="//@contains.238 //@contains.246"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="247" TrackElement_sensor="//@contains.245" TrackElement_connectsTo="//@contains.248" Segment_length="358"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="248" Sensor_trackElement="//@contains.238 //@contains.248"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="249" TrackElement_sensor="//@contains.247" TrackElement_connectsTo="//@contains.250" Segment_length="791"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="250" Sensor_trackElement="//@contains.238 //@contains.250"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="251" TrackElement_sensor="//@contains.249" TrackElement_connectsTo="//@contains.252" Segment_length="1003"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="252" Sensor_trackElement="//@contains.238 //@contains.252"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="253" TrackElement_sensor="//@contains.251" TrackElement_connectsTo="//@contains.254" Segment_length="19"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="254" Sensor_trackElement="//@contains.238 //@contains.254"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="255" TrackElement_sensor="//@contains.253" TrackElement_connectsTo="//@contains.256" Segment_length="190"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:SwitchPosition" id="256" SwitchPosition_switch="//@contains.238" SwitchPosition_switchState="RIGHT" SwitchPosition_route="//@contains.219"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Switch" id="257" TrackElement_sensor="//@contains.259 //@contains.261 //@contains.263 //@contains.265 //@contains.267 //@contains.269 //@contains.271 //@contains.273" TrackElement_connectsTo="//@contains.258" Switch_switchPosition="//@contains.275"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="258" Sensor_trackElement="//@contains.258"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="259" TrackElement_sensor="//@contains.257" TrackElement_connectsTo="//@contains.260" Segment_length="976"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="260" Sensor_trackElement="//@contains.256 //@contains.260"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="261" TrackElement_sensor="//@contains.259" TrackElement_connectsTo="//@contains.262" Segment_length="99"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="262" Sensor_trackElement="//@contains.256 //@contains.262"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="263" TrackElement_sensor="//@contains.261" TrackElement_connectsTo="//@contains.264" Segment_length="255"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="264" Sensor_trackElement="//@contains.256 //@contains.264"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="265" TrackElement_sensor="//@contains.263" TrackElement_connectsTo="//@contains.266" Segment_length="-619"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="266" Sensor_trackElement="//@contains.256 //@contains.266"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="267" TrackElement_sensor="//@contains.265" TrackElement_connectsTo="//@contains.268" Segment_length="844"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="268" Sensor_trackElement="//@contains.256 //@contains.268"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="269" TrackElement_sensor="//@contains.267" TrackElement_connectsTo="//@contains.270" Segment_length="860"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="270" Sensor_trackElement="//@contains.256 //@contains.270"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="271" TrackElement_sensor="//@contains.269" TrackElement_connectsTo="//@contains.272" Segment_length="235"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="272" Sensor_trackElement="//@contains.256 //@contains.272"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="273" TrackElement_sensor="//@contains.271" TrackElement_connectsTo="//@contains.274" Segment_length="771"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="274" Sensor_trackElement="//@contains.256 //@contains.274"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="275" TrackElement_sensor="//@contains.273" TrackElement_connectsTo="//@contains.276" Segment_length="74"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:SwitchPosition" id="276" SwitchPosition_switch="//@contains.256" SwitchPosition_route="//@contains.219"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Switch" id="277" TrackElement_sensor="//@contains.277 //@contains.280 //@contains.282 //@contains.284 //@contains.286 //@contains.288 //@contains.290" TrackElement_connectsTo="//@contains.278" Switch_currentState="STRAIGHT" Switch_switchPosition="//@contains.292"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="278" Sensor_trackElement="//@contains.276 //@contains.278 //@contains.279"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="279" TrackElement_sensor="//@contains.277" TrackElement_connectsTo="//@contains.279" Segment_length="911"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="280" TrackElement_sensor="//@contains.277" TrackElement_connectsTo="//@contains.281" Segment_length="952"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="281" Sensor_trackElement="//@contains.276 //@contains.281"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="282" TrackElement_sensor="//@contains.280" TrackElement_connectsTo="//@contains.283" Segment_length="826"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="283" Sensor_trackElement="//@contains.276 //@contains.283"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="284" TrackElement_sensor="//@contains.282" TrackElement_connectsTo="//@contains.285" Segment_length="637"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="285" Sensor_trackElement="//@contains.276 //@contains.285"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="286" TrackElement_sensor="//@contains.284" TrackElement_connectsTo="//@contains.287" Segment_length="168"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="287" Sensor_trackElement="//@contains.276 //@contains.287"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="288" TrackElement_sensor="//@contains.286" TrackElement_connectsTo="//@contains.289" Segment_length="210"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="289" Sensor_trackElement="//@contains.276 //@contains.289"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="290" TrackElement_sensor="//@contains.288" TrackElement_connectsTo="//@contains.291" Segment_length="25"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="291" Sensor_trackElement="//@contains.276 //@contains.291"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="292" TrackElement_sensor="//@contains.290" TrackElement_connectsTo="//@contains.293" Segment_length="332"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:SwitchPosition" id="293" SwitchPosition_switch="//@contains.276" SwitchPosition_switchState="STRAIGHT" SwitchPosition_route="//@contains.219"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Switch" id="294" TrackElement_sensor="//@contains.294 //@contains.296 //@contains.298 //@contains.300 //@contains.302" TrackElement_connectsTo="//@contains.295" Switch_switchPosition="//@contains.304"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="295" Sensor_trackElement="//@contains.293 //@contains.295"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="296" TrackElement_sensor="//@contains.294" TrackElement_connectsTo="//@contains.297" Segment_length="836"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="297" Sensor_trackElement="//@contains.293 //@contains.297"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="298" TrackElement_sensor="//@contains.296" TrackElement_connectsTo="//@contains.299" Segment_length="363"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="299" Sensor_trackElement="//@contains.293 //@contains.299"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="300" TrackElement_sensor="//@contains.298" TrackElement_connectsTo="//@contains.301" Segment_length="492"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="301" Sensor_trackElement="//@contains.293 //@contains.301"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="302" TrackElement_sensor="//@contains.300" TrackElement_connectsTo="//@contains.303" Segment_length="894"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="303" Sensor_trackElement="//@contains.293 //@contains.303"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="304" TrackElement_sensor="//@contains.302" TrackElement_connectsTo="//@contains.305" Segment_length="61"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:SwitchPosition" id="305" SwitchPosition_switch="//@contains.293" SwitchPosition_switchState="STRAIGHT" SwitchPosition_route="//@contains.219"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Switch" id="306" TrackElement_sensor="//@contains.306 //@contains.308 //@contains.310 //@contains.312 //@contains.314 //@contains.316 //@contains.318 //@contains.320 //@contains.323" TrackElement_connectsTo="//@contains.307" Switch_switchPosition="//@contains.325"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="307" Sensor_trackElement="//@contains.305 //@contains.307"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="308" TrackElement_sensor="//@contains.306" TrackElement_connectsTo="//@contains.309" Segment_length="238"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="309" Sensor_trackElement="//@contains.305 //@contains.309"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="310" TrackElement_sensor="//@contains.308" TrackElement_connectsTo="//@contains.311" Segment_length="794"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="311" Sensor_trackElement="//@contains.305 //@contains.311"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="312" TrackElement_sensor="//@contains.310" TrackElement_connectsTo="//@contains.313" Segment_length="163"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="313" Sensor_trackElement="//@contains.305 //@contains.313"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="314" TrackElement_sensor="//@contains.312" TrackElement_connectsTo="//@contains.315" Segment_length="29"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="315" Sensor_trackElement="//@contains.305 //@contains.315"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="316" TrackElement_sensor="//@contains.314" TrackElement_connectsTo="//@contains.317" Segment_length="350"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="317" Sensor_trackElement="//@contains.305 //@contains.317"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="318" TrackElement_sensor="//@contains.316" TrackElement_connectsTo="//@contains.319" Segment_length="133"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="319" Sensor_trackElement="//@contains.305 //@contains.319"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="320" TrackElement_sensor="//@contains.318" TrackElement_connectsTo="//@contains.321" Segment_length="298"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="321" Sensor_trackElement="//@contains.305 //@contains.321 //@contains.322"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="322" TrackElement_sensor="//@contains.320" TrackElement_connectsTo="//@contains.322" Segment_length="570"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="323" TrackElement_sensor="//@contains.320" TrackElement_connectsTo="//@contains.324" Segment_length="683"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="324" Sensor_trackElement="//@contains.305 //@contains.324"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="325" TrackElement_sensor="//@contains.323" TrackElement_connectsTo="//@contains.326" Segment_length="168"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:SwitchPosition" id="326" SwitchPosition_switch="//@contains.305" SwitchPosition_route="//@contains.219"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Switch" id="327" TrackElement_sensor="//@contains.327 //@contains.329 //@contains.331 //@contains.333 //@contains.335" TrackElement_connectsTo="//@contains.328" Switch_switchPosition="//@contains.337"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="328" Sensor_trackElement="//@contains.326 //@contains.328"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="329" TrackElement_sensor="//@contains.327" TrackElement_connectsTo="//@contains.330" Segment_length="933"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="330" Sensor_trackElement="//@contains.326 //@contains.330"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="331" TrackElement_sensor="//@contains.329" TrackElement_connectsTo="//@contains.332" Segment_length="148"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="332" Sensor_trackElement="//@contains.326 //@contains.332"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="333" TrackElement_sensor="//@contains.331" TrackElement_connectsTo="//@contains.334" Segment_length="-317"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="334" Sensor_trackElement="//@contains.326 //@contains.334"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="335" TrackElement_sensor="//@contains.333" TrackElement_connectsTo="//@contains.336" Segment_length="69"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="336" Sensor_trackElement="//@contains.326 //@contains.336"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="337" TrackElement_sensor="//@contains.335" TrackElement_connectsTo="//@contains.338" Segment_length="562"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:SwitchPosition" id="338" SwitchPosition_switch="//@contains.326" SwitchPosition_route="//@contains.219"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Switch" id="339" TrackElement_sensor="//@contains.339 //@contains.341 //@contains.343 //@contains.345" TrackElement_connectsTo="//@contains.340" Switch_switchPosition="//@contains.347"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="340" Sensor_trackElement="//@contains.338 //@contains.340"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="341" TrackElement_sensor="//@contains.339" TrackElement_connectsTo="//@contains.342" Segment_length="467"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="342" Sensor_trackElement="//@contains.338 //@contains.342"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="343" TrackElement_sensor="//@contains.341" TrackElement_connectsTo="//@contains.344" Segment_length="359"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="344" Sensor_trackElement="//@contains.338 //@contains.344"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="345" TrackElement_sensor="//@contains.343" TrackElement_connectsTo="//@contains.346" Segment_length="386"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Sensor" id="346" Sensor_trackElement="//@contains.338 //@contains.346"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:Segment" id="347" TrackElement_sensor="//@contains.345" TrackElement_connectsTo="//@contains.3" Segment_length="180"/>
+  <contains xsi:type="hu.bme.mit.trainbenchmark:SwitchPosition" id="348" SwitchPosition_switch="//@contains.338" SwitchPosition_route="//@contains.219"/>
+</hu.bme.mit.trainbenchmark:RailwayContainer>

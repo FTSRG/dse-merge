@@ -5,23 +5,32 @@ import "http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.ow
 import "http://www.eclipse.org/emf/2002/Ecore"
 import "http://org.eclipse.viatra.dse.merge/scope"
 
-pattern goalPattern() {
+pattern goalPattern(x) {
+	x == 1;
 	find create(_,_,_);
 } or {
+	x == 1;
 	find delete(_,_,_);
 } or {
+	x == 1;
 	find setReference(_,_,_,_);
 } or {
+	x == 1;
 	find unsetReference(_,_,_);
 } or {
+	x == 1;
 	find addReference(_,_,_,_);
 } or {
+	x == 1;
 	find removeReference(_,_,_,_);
 } or {
+	x == 1;
 	find setAttribute(_,_,_);
 } or {
+	x == 1;
 	find addAttribute(_,_,_);
 } or {
+	x == 1;
 	find removeAttribute(_,_,_);
 }
 
