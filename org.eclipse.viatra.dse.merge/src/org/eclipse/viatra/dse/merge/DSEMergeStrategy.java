@@ -22,11 +22,11 @@ import org.eclipse.viatra.dse.merge.model.Change;
 import org.eclipse.viatra.dse.merge.model.ChangeSet;
 import org.eclipse.viatra.dse.merge.model.Create;
 import org.eclipse.viatra.dse.merge.model.Delete;
+import org.eclipse.viatra.dse.merge.model.Id;
 import org.eclipse.viatra.dse.merge.model.Reference;
 import org.eclipse.viatra.dse.merge.queries.ExecutableDeleteChangeMatch;
 import org.eclipse.viatra.dse.merge.queries.ExecutableDeleteChangeMatcher;
 import org.eclipse.viatra.dse.merge.queries.util.ExecutableDeleteChangeQuerySpecification;
-import org.eclipse.viatra.dse.merge.scope.DSEMergeScope;
 import org.eclipse.viatra.dse.merge.scope.DSEMergeScope;
 import org.eclipse.viatra.dse.objectives.Fitness;
 
@@ -46,7 +46,7 @@ public class DSEMergeStrategy implements IStrategy {
 	private boolean backtracked = false;
 	private IQuerySpecification<IncQueryMatcher<IPatternMatch>> id2eobject;
 	
-	public static Multimap<Long, Delete> deleteDependencies = ArrayListMultimap.create();
+	public static Multimap<Object, Delete> deleteDependencies = ArrayListMultimap.create();
 	
 	@Override
 	public void init(ThreadContext context) {
@@ -69,35 +69,35 @@ public class DSEMergeStrategy implements IStrategy {
 	private void buildDeleteDependencies(ChangeSet from, ChangeSet to)
 			throws Exception {
 		
-		Collection<Long> checkedSet = Sets.newHashSet();
-		Multimap<Long,Delete> foundSet = ArrayListMultimap.create();
+		Collection<Object> checkedSet = Sets.newHashSet();
+		Multimap<Object,Delete> foundSet = ArrayListMultimap.create();
 		
 		for (Change change : from.getChanges()) {
 			if(change instanceof Create) {
-				searchDeleteDependency(((Create)change).getContainer(), checkedSet, foundSet, to);
+				searchDeleteDependency(getId(((Create)change).getContainer()), checkedSet, foundSet, to);
 			}
 			else if(change instanceof Delete) {
-				searchDeleteDependency(((Delete)change).getSrc(), checkedSet, foundSet, to);
+				searchDeleteDependency(getId(((Delete)change).getSrc()), checkedSet, foundSet, to);
 			}
 			else if(change instanceof Attribute) {
-				searchDeleteDependency(((Attribute)change).getSrc(), checkedSet, foundSet, to);
+				searchDeleteDependency(getId(((Attribute)change).getSrc()), checkedSet, foundSet, to);
 			}
 			else if(change instanceof Reference) {
-				searchDeleteDependency(((Reference)change).getSrc(), checkedSet, foundSet, to);
-				searchDeleteDependency(((Reference)change).getTrg(), checkedSet, foundSet, to);
+				searchDeleteDependency(getId(((Reference)change).getSrc()), checkedSet, foundSet, to);
+				searchDeleteDependency(getId(((Reference)change).getTrg()), checkedSet, foundSet, to);
 			}
 		}		
-		for(long key : foundSet.keySet()) {
+		for(Object key : foundSet.keySet()) {
 			deleteDependencies.putAll(key, foundSet.get(key));
 		}
 	}
 	
-	private void searchDeleteDependency(long original, Collection<Long> checkedSet, Multimap<Long,Delete> foundSet, ChangeSet changeSet) throws Exception {
+	private void searchDeleteDependency(Object original, Collection<Object> checkedSet, Multimap<Object,Delete> foundSet, ChangeSet changeSet) throws Exception {
 		searchDeleteDependency(original, original, checkedSet, foundSet, changeSet);
 	}
 	
-	private void searchDeleteDependency(long current, long original, Collection<Long> checkedSet, Multimap<Long,Delete> foundSet, ChangeSet changeSet) throws Exception {
-		if(current == -1) { // Not identified object
+	private void searchDeleteDependency(Object current, Object original, Collection<Object> checkedSet, Multimap<Object,Delete> foundSet, ChangeSet changeSet) throws Exception {
+		if(current.equals(-1)) { // Not identified object
 			checkedSet.add(-1L);
 		} else if(foundSet.containsKey(current) && current != original) {
 			foundSet.putAll(original, foundSet.get(current));
@@ -119,7 +119,7 @@ public class DSEMergeStrategy implements IStrategy {
 		return;
 	}
 
-	private void passForwardToParent(long current, long original, Collection<Long> checkedSet, Multimap<Long, Delete> foundSet, ChangeSet changeSet)
+	private void passForwardToParent(Object current, Object original, Collection<Object> checkedSet, Multimap<Object, Delete> foundSet, ChangeSet changeSet)
 			throws IncQueryException, Exception {
 		IncQueryEngine engine = context.getIncqueryEngine();
 		
@@ -139,7 +139,7 @@ public class DSEMergeStrategy implements IStrategy {
 			if(parent != null) {
 				EStructuralFeature feature = parent.eClass().getEStructuralFeature("id");
 				if(feature == null) return;
-				searchDeleteDependency((Long) parent.eGet(feature), original, checkedSet, foundSet, changeSet);
+				searchDeleteDependency((Object) parent.eGet(feature), original, checkedSet, foundSet, changeSet);
 			}
 			
 		}
@@ -232,4 +232,14 @@ public class DSEMergeStrategy implements IStrategy {
 		this.id2eobject = querySpecification;
 	}
 
+	private Object getId(Id id) {
+		switch (id.getType()) {
+		case EINT: return id.getEInt();
+		case ELONG: return id.getELong();
+		case ESTRING: return id.getEString();
+		default:
+			return null;
+		}
+	}
+	
 }

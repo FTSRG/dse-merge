@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.viatra.dse.merge.model.Attribute;
 import org.eclipse.viatra.dse.merge.model.ChangeSet;
+import org.eclipse.viatra.dse.merge.model.Id;
 import org.eclipse.viatra.dse.merge.model.Kind;
 import org.eclipse.viatra.dse.merge.model.ModelFactory;
 
@@ -59,7 +60,7 @@ public class EMFDiffMergeTranslator {
 
 				Attribute attribute = ModelFactory.eINSTANCE.createAttribute();
 				attribute.setFeature(diff.getFeature());
-				attribute.setSrc((long) object.eGet(feature));
+				attribute.setSrc(create(object.eGet(feature)));
 				attribute.setValue(diff.getValue());
 				attribute.setExecutable(true);
 				if(!diff.getFeature().isMany()) {
@@ -70,6 +71,36 @@ public class EMFDiffMergeTranslator {
 				changeSet.getChanges().add(attribute);
 			}
 		}
+	}
+	private static Id create(int value) {
+		Id id = ModelFactory.eINSTANCE.createId();
+		id.setEInt(value);
+		return id;
+	}
+	
+	private static Id create(long value) {
+		Id id = ModelFactory.eINSTANCE.createId();
+		id.setELong(value);
+		return id;
+	}
+	
+	private static Id create(String value) {
+		Id id = ModelFactory.eINSTANCE.createId();
+		id.setEString(value);
+		return id;
+	}
+	
+	private static Id create(Object value) {
+		if(value instanceof Integer) {
+			return create((int)value);
+		}
+		if(value instanceof Long) {
+			return create((long)value);
+		}
+		if(value instanceof String) {
+			return create((String)value);
+		}
+		return null;
 	}
 	
 }

@@ -1,7 +1,7 @@
 package org.eclipse.viatra.dse.merge.train
 
 import "http://org.eclipse.viatra.dse.merge/model"
-import "http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl"
+import "http://www.semanticweb.org/ontologies/2015/trainbenchmark"
 import "http://www.eclipse.org/emf/2002/Ecore"
 import "http://org.eclipse.viatra.dse.merge/scope"
 
@@ -38,48 +38,46 @@ pattern id2object(eobject, id) {
 	RailwayElement.id(eobject, id);
 }
 
-
 pattern create(container : RailwayElement, change : Create, scope : DSEMergeScope) {
 	RailwayElement.id(container, c_id);
-	Create.container(change, c_id);
+	Create.container.eInt(change, c_id);
 	Change.executable(change, true);
 	DSEMergeScope.local.changes(scope, change);
-	
 } or {
 	RailwayElement.id(container, c_id);
-	Create.container(change, c_id);
+	Create.container.eInt(change, c_id);
 	Change.executable(change, true);
 	DSEMergeScope.remote.changes(scope, change);
 }
 
 pattern delete(src : RailwayElement, change : Delete, scope : DSEMergeScope) {
 	RailwayElement.id(src, c_id);
-	Delete.src(change, c_id);
+	Delete.src.eInt(change, c_id);
 	Change.executable(change, true);
 	DSEMergeScope.local.changes(scope, change);
 } or {
 	RailwayElement.id(src, c_id);
-	Delete.src(change, c_id);
+	Delete.src.eInt(change, c_id);
 	Change.executable(change, true);
 	DSEMergeScope.remote.changes(scope, change);
 }
 
 pattern setReference(src : RailwayElement, trg : RailwayElement, change : Reference, scope : DSEMergeScope) {
 	RailwayElement.id(src, src_id);
-	Reference.src(change, src_id);
+	Reference.src.eInt(change, src_id);
 
 	RailwayElement.id(trg, trg_id);
-	Reference.src(change, trg_id);
+	Reference.src.eInt(change, trg_id);
 
 	Reference.kind(change, ::set);
 	Change.executable(change, true);
 	DSEMergeScope.local.changes(scope, change);
 } or {
 	RailwayElement.id(src, src_id);
-	Reference.src(change, src_id);
+	Reference.src.eInt(change, src_id);
 
 	RailwayElement.id(trg, trg_id);
-	Reference.src(change, trg_id);
+	Reference.src.eInt(change, trg_id);
 
 	Reference.kind(change, ::set);
 	Change.executable(change, true);
@@ -87,14 +85,14 @@ pattern setReference(src : RailwayElement, trg : RailwayElement, change : Refere
 }
 pattern unsetReference(src : RailwayElement, change : Reference, scope : DSEMergeScope) {
 	RailwayElement.id(src, src_id);
-	Reference.src(change, src_id);
+	Reference.src.eInt(change, src_id);
 
 	Reference.kind(change, ::set);
 	Change.executable(change, true);
 	DSEMergeScope.local.changes(scope, change);
 } or {
 	RailwayElement.id(src, src_id);
-	Reference.src(change, src_id);
+	Reference.src.eInt(change, src_id);
 
 	Reference.kind(change, ::set);
 	Change.executable(change, true);
@@ -102,20 +100,20 @@ pattern unsetReference(src : RailwayElement, change : Reference, scope : DSEMerg
 }
 pattern addReference(src : RailwayElement, trg : RailwayElement, change : Reference, scope : DSEMergeScope) {
 	RailwayElement.id(src, src_id);
-	Reference.src(change, src_id);
+	Reference.src.eInt(change, src_id);
 
 	RailwayElement.id(trg, trg_id);
-	Reference.src(change, trg_id);
+	Reference.src.eInt(change, trg_id);
 
 	Reference.kind(change, ::add);
 	Change.executable(change, true);
 	DSEMergeScope.local.changes(scope, change);
 } or {
 	RailwayElement.id(src, src_id);
-	Reference.src(change, src_id);
+	Reference.src.eInt(change, src_id);
 
 	RailwayElement.id(trg, trg_id);
-	Reference.src(change, trg_id);
+	Reference.src.eInt(change, trg_id);
 
 	Reference.kind(change, ::add);
 	Change.executable(change, true);
@@ -123,20 +121,20 @@ pattern addReference(src : RailwayElement, trg : RailwayElement, change : Refere
 }
 pattern removeReference(src : RailwayElement, trg : RailwayElement, change : Reference, scope : DSEMergeScope) {
 	RailwayElement.id(src, src_id);
-	Reference.src(change, src_id);
+	Reference.src.eInt(change, src_id);
 
 	RailwayElement.id(trg, trg_id);
-	Reference.src(change, trg_id);
+	Reference.src.eInt(change, trg_id);
 
 	Reference.kind(change, ::remove);
 	Change.executable(change, true);
 	DSEMergeScope.local.changes(scope, change);
 } or {
 	RailwayElement.id(src, src_id);
-	Reference.src(change, src_id);
+	Reference.src.eInt(change, src_id);
 
 	RailwayElement.id(trg, trg_id);
-	Reference.src(change, trg_id);
+	Reference.src.eInt(change, trg_id);
 
 	Reference.kind(change, ::remove);
 	Change.executable(change, true);
@@ -144,14 +142,14 @@ pattern removeReference(src : RailwayElement, trg : RailwayElement, change : Ref
 }
 pattern setAttribute(src : RailwayElement, change : Attribute, scope : DSEMergeScope) {
 	RailwayElement.id(src, src_id);
-	Attribute.src(change, src_id);
+	Attribute.src.eInt(change, src_id);
 
 	Attribute.kind(change, ::set);
 	Change.executable(change, true);
 	DSEMergeScope.local.changes(scope, change);
 } or {
 	RailwayElement.id(src, src_id);
-	Attribute.src(change, src_id);
+	Attribute.src.eInt(change, src_id);
 
 	Attribute.kind(change, ::set);
 	Change.executable(change, true);
@@ -159,14 +157,14 @@ pattern setAttribute(src : RailwayElement, change : Attribute, scope : DSEMergeS
 }
 pattern addAttribute(src : RailwayElement, change : Attribute, scope : DSEMergeScope) {
 	RailwayElement.id(src, src_id);
-	Attribute.src(change, src_id);
+	Attribute.src.eInt(change, src_id);
 
 	Attribute.kind(change, ::add);
 	Change.executable(change, true);
 	DSEMergeScope.local.changes(scope, change);
 } or {
 	RailwayElement.id(src, src_id);
-	Attribute.src(change, src_id);
+	Attribute.src.eInt(change, src_id);
 
 	Attribute.kind(change, ::add);
 	Change.executable(change, true);
@@ -174,14 +172,14 @@ pattern addAttribute(src : RailwayElement, change : Attribute, scope : DSEMergeS
 }
 pattern removeAttribute(src : RailwayElement, change : Attribute, scope : DSEMergeScope) {
 	RailwayElement.id(src, src_id);
-	Attribute.src(change, src_id);
+	Attribute.src.eInt(change, src_id);
 
 	Attribute.kind(change, ::remove);
 	Change.executable(change, true);
 	DSEMergeScope.local.changes(scope, change);
 } or {
 	RailwayElement.id(src, src_id);
-	Attribute.src(change, src_id);
+	Attribute.src.eInt(change, src_id);
 
 	Attribute.kind(change, ::remove);
 	Change.executable(change, true);

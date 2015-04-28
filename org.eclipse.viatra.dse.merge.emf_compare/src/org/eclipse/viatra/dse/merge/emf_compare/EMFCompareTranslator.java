@@ -17,6 +17,7 @@ import org.eclipse.viatra.dse.merge.model.Attribute;
 import org.eclipse.viatra.dse.merge.model.ChangeSet;
 import org.eclipse.viatra.dse.merge.model.Create;
 import org.eclipse.viatra.dse.merge.model.Delete;
+import org.eclipse.viatra.dse.merge.model.Id;
 import org.eclipse.viatra.dse.merge.model.Kind;
 import org.eclipse.viatra.dse.merge.model.ModelFactory;
 import org.eclipse.viatra.dse.merge.model.Reference;
@@ -61,7 +62,7 @@ public class EMFCompareTranslator {
 
 		Attribute attribute = ModelFactory.eINSTANCE.createAttribute();
 		attribute.setFeature(diff.getAttribute());
-		attribute.setSrc((long) object.eGet(feature));
+		attribute.setSrc(create(object.eGet(feature)));
 		attribute.setValue(diff.getValue());
 		attribute.setExecutable(true);
 		
@@ -101,11 +102,11 @@ public class EMFCompareTranslator {
 		
 		Reference reference = ModelFactory.eINSTANCE.createReference();
 		reference.setFeature(diff.getReference());
-		reference.setSrc((long) object.eGet(feature));
+		reference.setSrc(create(object.eGet(feature)));
 		Object target = object.eGet(diff.getReference());
 		if(target != null) {
 			if(diff.getMatch().getComparison().getMatch(diff.getValue()).getLeft() == null) return;
-			reference.setTrg((long) ((EObject)diff.getValue()).eGet(feature));
+			reference.setTrg(create(((EObject)diff.getValue()).eGet(feature)));
 		}
 		reference.setExecutable(true);
 		
@@ -144,7 +145,7 @@ public class EMFCompareTranslator {
 			
 			Create create = ModelFactory.eINSTANCE.createCreate();
 			create.setExecutable(true);
-			create.setSrc((long) object.eGet(feature));
+			create.setSrc(create(object.eGet(feature)));
 			create.setFeature(diff.getReference());
 			changeSet.getChanges().add(create);
 			
@@ -157,12 +158,12 @@ public class EMFCompareTranslator {
 					if(result instanceof EList<?>) {
 						for(EObject trg : (EList<EObject>) result) {
 							EStructuralFeature feature2 = trg.eClass().getEStructuralFeature("id");
-							insertReference(create, f, (long) object.eGet(feature), (long)trg.eGet(feature2), changeSet, Kind.ADD);
+							insertReference(create, f, object.eGet(feature), trg.eGet(feature2), changeSet, Kind.ADD);
 						}
 					} else if (result != null) {
 						EObject trg = (EObject) result;
 						EStructuralFeature feature2 = trg.eClass().getEStructuralFeature("id");
-						insertReference(create, f, (long) object.eGet(feature), (long)trg.eGet(feature2), changeSet, Kind.SET);
+						insertReference(create, f, object.eGet(feature), trg.eGet(feature2), changeSet, Kind.SET);
 					}
 					
 				}
@@ -170,11 +171,11 @@ public class EMFCompareTranslator {
 					Object result = object.eGet(f);
 					if(result instanceof EList<?>) {
 						for(Object trg : (EList<Object>) result) {
-							insertAttribute(create, f, (long) object.eGet(feature), trg, changeSet, Kind.ADD);
+							insertAttribute(create, f, object.eGet(feature), trg, changeSet, Kind.ADD);
 						}
 					} else {
 						Object trg = (Object) result;
-						insertAttribute(create, f, (long) object.eGet(feature), trg, changeSet, Kind.SET);
+						insertAttribute(create, f, object.eGet(feature), trg, changeSet, Kind.SET);
 					}
 				}
 			}		
@@ -191,28 +192,28 @@ public class EMFCompareTranslator {
 			
 			Delete delete = ModelFactory.eINSTANCE.createDelete();
 			delete.setExecutable(true);
-			delete.setSrc((long) object.eGet(feature));
+			delete.setSrc(create(object.eGet(feature)));
 			changeSet.getChanges().add(delete);
 			return true;
 		}
 		return false;
 	}
 
-	private static void insertReference(Create create, EStructuralFeature feature, long src, long trg, ChangeSet set, Kind kind) {
+	private static void insertReference(Create create, EStructuralFeature feature, Object src, Object trg, ChangeSet set, Kind kind) {
 		Reference reference = ModelFactory.eINSTANCE.createReference();
 		reference.setFeature(feature);
-		reference.setSrc(src);
-		reference.setTrg(trg);
+		reference.setSrc(create(src));
+		reference.setTrg(create(trg));
 		reference.setExecutable(true);
 		reference.setKind(kind);
 		set.getChanges().add(reference);
 		create.getFeatures().add(reference);
 	}
 	
-	private static void insertAttribute(Create create, EStructuralFeature feature, long src, Object trg, ChangeSet set, Kind kind) {
+	private static void insertAttribute(Create create, EStructuralFeature feature, Object src, Object trg, ChangeSet set, Kind kind) {
 		Attribute reference = ModelFactory.eINSTANCE.createAttribute();
 		reference.setFeature(feature);
-		reference.setSrc(src);
+		reference.setSrc(create(src));
 		reference.setValue(trg);
 		reference.setExecutable(true);
 		reference.setKind(kind);
@@ -220,4 +221,35 @@ public class EMFCompareTranslator {
 		create.getFeatures().add(reference);
 	}
 
+	private static Id create(int value) {
+		Id id = ModelFactory.eINSTANCE.createId();
+		id.setEInt(value);
+		return id;
+	}
+	
+	private static Id create(long value) {
+		Id id = ModelFactory.eINSTANCE.createId();
+		id.setELong(value);
+		return id;
+	}
+	
+	private static Id create(String value) {
+		Id id = ModelFactory.eINSTANCE.createId();
+		id.setEString(value);
+		return id;
+	}
+	
+	private static Id create(Object value) {
+		if(value instanceof Integer) {
+			return create((int)value);
+		}
+		if(value instanceof Long) {
+			return create((long)value);
+		}
+		if(value instanceof String) {
+			return create((String)value);
+		}
+		return null;
+	}
+	
 }
