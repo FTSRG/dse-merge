@@ -232,7 +232,7 @@ public class DSEMergeStrategy implements IStrategy {
 		this.id2eobject = querySpecification;
 	}
 
-	private Object getId(Id id) {
+	public static Object getId(Id id) {
 		switch (id.getType()) {
 		case EINT: return id.getEInt();
 		case ELONG: return id.getELong();

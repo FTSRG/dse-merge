@@ -78,9 +78,9 @@ public class EMFCompareTest {
 
 	private static String PREFIX = "C:\\Git\\trainbenchmark\\models\\";
 	
-	private static String LOCAL_MODEL = PREFIX + "railway-test-1-change.emf.railway";
-	private static String REMOTE_MODEL = PREFIX + "railway-test-1-delete.emf.railway";
-	private static String ORIGINAL_MODEL = PREFIX + "railway-test-1-orig.emf";
+	private static String LOCAL_MODEL = PREFIX + "railway-repair-1-local.emf";
+	private static String REMOTE_MODEL = PREFIX + "railway-repair-1-remote.emf";
+	private static String ORIGINAL_MODEL = PREFIX + "railway-repair-1-original.emf";
 
 	private ChangeSet changeSetOL;
 	private ChangeSet changeSetOR;
@@ -98,7 +98,6 @@ public class EMFCompareTest {
 		ModelPackage pp = ModelPackage.eINSTANCE;
 		ScopePackage ppp = ScopePackage.eINSTANCE;
 		
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap( ).put("railway", new XMIResourceFactoryImpl());
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap( ).put("emf", new XMIResourceFactoryImpl());
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap( ).put("DUMMY", new XMIResourceFactoryImpl());
 		

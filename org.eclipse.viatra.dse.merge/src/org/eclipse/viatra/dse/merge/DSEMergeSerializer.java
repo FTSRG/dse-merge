@@ -61,7 +61,7 @@ public class DSEMergeSerializer implements IStateSerializer {
 			}
 
 			private int checkAttribute(Attribute o1, Attribute o2) {
-				int src = String.valueOf(o1.getSrc()).compareTo(String.valueOf(o2.getSrc()));
+				int src = String.valueOf(DSEMergeStrategy.getId(o1.getSrc())).compareTo(String.valueOf(DSEMergeStrategy.getId(o2.getSrc())));
 				int feature = o1.getFeature().getName().compareTo(o2.getFeature().getName());
 				int type = o1.getKind().getName().compareTo(o2.getKind().getName());
 				int value = o1.getValue().toString().compareTo(o2.getValue().toString());
@@ -70,20 +70,20 @@ public class DSEMergeSerializer implements IStateSerializer {
 			}
 
 			private int checkReference(Reference o1, Reference o2) {
-				int src = String.valueOf(o1.getSrc()).compareTo(String.valueOf(o2.getSrc()));
+				int src = String.valueOf(DSEMergeStrategy.getId(o1.getSrc())).compareTo(String.valueOf(DSEMergeStrategy.getId(o2.getSrc())));
 				int feature = o1.getFeature().getName().compareTo(o2.getFeature().getName());
 				int type = o1.getKind().getName().compareTo(o2.getKind().getName());
-				int trg = String.valueOf(o1.getTrg()).compareTo(String.valueOf(o2.getTrg()));
+				int trg = String.valueOf(DSEMergeStrategy.getId(o1.getTrg())).compareTo(String.valueOf(DSEMergeStrategy.getId(o2.getTrg())));
 				
 				return src + feature + type + trg;
 			}
 
 			private int checkDelete(Delete o1, Delete o2) {
-				return String.valueOf(o1.getSrc()).compareTo(String.valueOf(o2.getSrc()));
+				return String.valueOf(DSEMergeStrategy.getId(o1.getSrc())).compareTo(String.valueOf(DSEMergeStrategy.getId(o2.getSrc())));
 			}
 
 			private int checkCreate(Create o1, Create o2) {
-				return String.valueOf(o1.getSrc()).compareTo(String.valueOf(o2.getSrc()));
+				return String.valueOf(DSEMergeStrategy.getId(o1.getSrc())).compareTo(String.valueOf(DSEMergeStrategy.getId(o2.getSrc())));
 			}
 
 			private int checkType(Change o1, Change o2) {
@@ -101,19 +101,19 @@ public class DSEMergeSerializer implements IStateSerializer {
 		
 		if(change instanceof Create) {
 			Create _change = (Create) change;
-			ret = "Create{executable=" + _change.isExecutable() + ";srcId=" + _change.getSrc() + ";containerId=" + _change.getContainer() + ";feature="+_change.getFeature().getName() + "}";
+			ret = "Create{executable=" + _change.isExecutable() + ";srcId=" + DSEMergeStrategy.getId(_change.getSrc()) + ";containerId=" + DSEMergeStrategy.getId(_change.getContainer()) + ";feature="+_change.getFeature().getName() + "}";
 		}
 		if(change instanceof Delete) {
 			Delete _change = (Delete) change;
-			ret = "Delete{executable=" + _change.isExecutable() + ";srcId=" + _change.getSrc() + "}";
+			ret = "Delete{executable=" + _change.isExecutable() + ";srcId=" + DSEMergeStrategy.getId(_change.getSrc()) + "}";
 		}
 		if(change instanceof Reference) {
 			Reference _change = (Reference) change;
-			ret = "Reference{executable=" + _change.isExecutable() + ";srcId=" + _change.getSrc() + ";trgId=" + _change.getTrg() + ";feature="+_change.getFeature().getName() + ";kind=" + _change.getKind() + "}";
+			ret = "Reference{executable=" + _change.isExecutable() + ";srcId=" + DSEMergeStrategy.getId(_change.getSrc()) + ";trgId=" + DSEMergeStrategy.getId(_change.getTrg()) + ";feature="+_change.getFeature().getName() + ";kind=" + _change.getKind() + "}";
 		}
 		if(change instanceof Attribute) {
 			Attribute _change = (Attribute) change;
-			ret = "Attribute{executable=" + _change.isExecutable() + ";srcId=" + _change.getSrc() + ";value=" + _change.getValue() + ";feature="+_change.getFeature().getName() + ";kind=" + _change.getKind() + "}";
+			ret = "Attribute{executable=" + _change.isExecutable() + ";srcId=" + DSEMergeStrategy.getId(_change.getSrc()) + ";value=" + _change.getValue() + ";feature="+_change.getFeature().getName() + ";kind=" + _change.getKind() + "}";
 		}
 		if(change.getPriority() == Priority.MUST)
 			ret = DSEMergeStrategy.MUST_PREFIX + ret;
@@ -146,7 +146,7 @@ public class DSEMergeSerializer implements IStateSerializer {
 			}
 			else if(p instanceof EObject) {
 				EStructuralFeature feature = ((EObject) p).eClass().getEStructuralFeature("id");
-				String id = String.valueOf((long)((EObject) p).eGet(feature));
+				String id = String.valueOf(((EObject) p).eGet(feature));
 				ret += id + ";";
 			} else {
 				ret += p.toString() + ";";
