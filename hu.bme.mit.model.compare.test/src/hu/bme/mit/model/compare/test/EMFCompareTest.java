@@ -32,6 +32,7 @@ import org.eclipse.viatra.dse.merge.DSEMergeManager.Solution;
 import org.eclipse.viatra.dse.merge.emf_compare.EMFCompareTranslator;
 import org.eclipse.viatra.dse.merge.model.ChangeSet;
 import org.eclipse.viatra.dse.merge.model.ModelPackage;
+import org.eclipse.viatra.dse.merge.model.Priority;
 import org.eclipse.viatra.dse.merge.scope.Cemetery;
 import org.eclipse.viatra.dse.merge.scope.DSEMergeScope;
 import org.eclipse.viatra.dse.merge.scope.ScopePackage;
@@ -151,14 +152,14 @@ public class EMFCompareTest {
 				GoalPatternQuerySpecification.instance());		
 
 		//set priority for the first 4 changes on local side
-//		for(int i = 0; i < 4; i++) {
-//			changeSetOL.getChanges().get(i).setPriority(Priority.MUST);
-//		}		
+		for(int i = 0; i < 4; i++) {
+			changeSetOL.getChanges().get(i).setPriority(Priority.MUST);
+		}		
 		
 		//set priority for the first 2 changes on local side
-//		for(int i = 0; i < 2; i++) {
-//			changeSetOR.getChanges().get(i).setPriority(Priority.MUST);
-//		}
+		for(int i = 0; i < 2; i++) {
+			changeSetOR.getChanges().get(i).setPriority(Priority.MUST);
+		}
 		
 		manager = DSEMergeManager.create(originalModel, changeSetOL, changeSetOR);
 		manager.setMetamodel(RailwayPackage.eINSTANCE);

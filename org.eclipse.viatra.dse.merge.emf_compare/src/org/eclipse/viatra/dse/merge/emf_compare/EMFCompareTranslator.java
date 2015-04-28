@@ -1,8 +1,5 @@
 package org.eclipse.viatra.dse.merge.emf_compare;
 
-import java.util.Collection;
-import java.util.Map;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.compare.Comparison;
 import org.eclipse.emf.compare.Diff;
@@ -18,11 +15,10 @@ import org.eclipse.viatra.dse.merge.model.ChangeSet;
 import org.eclipse.viatra.dse.merge.model.Create;
 import org.eclipse.viatra.dse.merge.model.Delete;
 import org.eclipse.viatra.dse.merge.model.Id;
+import org.eclipse.viatra.dse.merge.model.IdType;
 import org.eclipse.viatra.dse.merge.model.Kind;
 import org.eclipse.viatra.dse.merge.model.ModelFactory;
 import org.eclipse.viatra.dse.merge.model.Reference;
-
-import com.google.common.collect.Maps;
 
 public class EMFCompareTranslator {
 
@@ -224,18 +220,21 @@ public class EMFCompareTranslator {
 	private static Id create(int value) {
 		Id id = ModelFactory.eINSTANCE.createId();
 		id.setEInt(value);
+		id.setType(IdType.EINT);
 		return id;
 	}
 	
 	private static Id create(long value) {
 		Id id = ModelFactory.eINSTANCE.createId();
 		id.setELong(value);
+		id.setType(IdType.ELONG);
 		return id;
 	}
 	
 	private static Id create(String value) {
 		Id id = ModelFactory.eINSTANCE.createId();
 		id.setEString(value);
+		id.setType(IdType.ESTRING);
 		return id;
 	}
 	
