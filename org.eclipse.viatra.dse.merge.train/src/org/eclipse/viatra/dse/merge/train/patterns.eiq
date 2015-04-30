@@ -67,7 +67,7 @@ pattern setReference(src : RailwayElement, trg : RailwayElement, change : Refere
 	Reference.src.eInt(change, src_id);
 
 	RailwayElement.id(trg, trg_id);
-	Reference.src.eInt(change, trg_id);
+	Reference.trg.eInt(change, trg_id);
 
 	Reference.kind(change, ::set);
 	Change.executable(change, true);
@@ -77,7 +77,7 @@ pattern setReference(src : RailwayElement, trg : RailwayElement, change : Refere
 	Reference.src.eInt(change, src_id);
 
 	RailwayElement.id(trg, trg_id);
-	Reference.src.eInt(change, trg_id);
+	Reference.trg.eInt(change, trg_id);
 
 	Reference.kind(change, ::set);
 	Change.executable(change, true);
@@ -103,7 +103,7 @@ pattern addReference(src : RailwayElement, trg : RailwayElement, change : Refere
 	Reference.src.eInt(change, src_id);
 
 	RailwayElement.id(trg, trg_id);
-	Reference.src.eInt(change, trg_id);
+	Reference.trg.eInt(change, trg_id);
 
 	Reference.kind(change, ::add);
 	Change.executable(change, true);
@@ -113,7 +113,7 @@ pattern addReference(src : RailwayElement, trg : RailwayElement, change : Refere
 	Reference.src.eInt(change, src_id);
 
 	RailwayElement.id(trg, trg_id);
-	Reference.src.eInt(change, trg_id);
+	Reference.trg.eInt(change, trg_id);
 
 	Reference.kind(change, ::add);
 	Change.executable(change, true);
@@ -124,7 +124,7 @@ pattern removeReference(src : RailwayElement, trg : RailwayElement, change : Ref
 	Reference.src.eInt(change, src_id);
 
 	RailwayElement.id(trg, trg_id);
-	Reference.src.eInt(change, trg_id);
+	Reference.trg.eInt(change, trg_id);
 
 	Reference.kind(change, ::remove);
 	Change.executable(change, true);
@@ -134,7 +134,7 @@ pattern removeReference(src : RailwayElement, trg : RailwayElement, change : Ref
 	Reference.src.eInt(change, src_id);
 
 	RailwayElement.id(trg, trg_id);
-	Reference.src.eInt(change, trg_id);
+	Reference.trg.eInt(change, trg_id);
 
 	Reference.kind(change, ::remove);
 	Change.executable(change, true);

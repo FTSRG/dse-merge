@@ -93,12 +93,13 @@ public class DSEMergeStrategy implements IStrategy {
 	}
 	
 	private void searchDeleteDependency(Object original, Collection<Object> checkedSet, Multimap<Object,Delete> foundSet, ChangeSet changeSet) throws Exception {
+		if(original == null) return; //Corner case, when a create will create an object as root object
 		searchDeleteDependency(original, original, checkedSet, foundSet, changeSet);
 	}
 	
 	private void searchDeleteDependency(Object current, Object original, Collection<Object> checkedSet, Multimap<Object,Delete> foundSet, ChangeSet changeSet) throws Exception {
 		if(current.equals(-1)) { // Not identified object
-			checkedSet.add(-1L);
+			checkedSet.add(-1);
 		} else if(foundSet.containsKey(current) && current != original) {
 			foundSet.putAll(original, foundSet.get(current));
 		} else if(!checkedSet.contains(current)) {
@@ -233,6 +234,8 @@ public class DSEMergeStrategy implements IStrategy {
 	}
 
 	public static Object getId(Id id) {
+		if(id == null)
+			return null;
 		switch (id.getType()) {
 		case EINT: return id.getEInt();
 		case ELONG: return id.getELong();
