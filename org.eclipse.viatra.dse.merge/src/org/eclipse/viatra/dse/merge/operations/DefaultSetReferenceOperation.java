@@ -43,7 +43,7 @@ public class DefaultSetReferenceOperation {
 
 	private static void setToFalse(Reference pChange, Change change) {
 		if (change instanceof Reference) {
-			Attribute _change = (Attribute) change;
+			Reference _change = (Reference) change;
 			if (_change.getSrc() == pChange.getSrc() && _change.getFeature() == pChange.getFeature())
 				_change.setExecutable(false);
 		}
