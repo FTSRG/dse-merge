@@ -23,7 +23,7 @@ public class DefaultRemoveReferenceOperation {
 	}
 
 	private static void update(DSEMergeScope pScope, Reference pChange) {
-		for(Delete d : DSEMergeStrategy.deleteDependencies.get(pChange.getSrc())) {
+		for(Delete d : DSEMergeStrategy.deleteDependencies.get(DSEMergeStrategy.getId(pChange.getSrc()))) {
 			d.setExecutable(false);
 		}
 		 

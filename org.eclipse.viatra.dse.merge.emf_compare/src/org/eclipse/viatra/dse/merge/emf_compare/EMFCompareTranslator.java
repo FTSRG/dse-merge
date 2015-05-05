@@ -143,6 +143,8 @@ public class EMFCompareTranslator {
 			create.setExecutable(true);
 			create.setSrc(create(object.eGet(feature)));
 			create.setFeature(diff.getReference());
+			create.setClazz(object.eClass());
+			create.setContainer(create(object.eContainer().eGet(feature)));
 			changeSet.getChanges().add(create);
 			
 			for(EStructuralFeature f : object.eClass().getEAllStructuralFeatures()) {

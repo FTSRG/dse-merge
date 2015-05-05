@@ -14,6 +14,8 @@ import org.eclipse.viatra.dse.merge.model.Kind;
 import org.eclipse.viatra.dse.merge.model.Reference;
 import org.eclipse.viatra.dse.merge.scope.DSEMergeScope;
 
+import com.google.common.collect.Lists;
+
 public class DefaultCreateOperation {
 
 	public static void process(EObject pContainer, Create pChange,
@@ -21,7 +23,7 @@ public class DefaultCreateOperation {
 		EObject element = (EObject) EcoreUtil.create(pChange.getClazz());
 		EStructuralFeature feature = element.eClass().getEStructuralFeature(
 				"id");
-		element.eSet(feature, pChange.getSrc());
+		element.eSet(feature, DSEMergeStrategy.getId(pChange.getSrc()));
 
 		if (pChange.getFeature().isMany()) {
 			@SuppressWarnings("unchecked")
@@ -32,23 +34,23 @@ public class DefaultCreateOperation {
 			pContainer.eSet(pChange.getFeature(), element);
 		}
 
-		for (Attribute attribute : pChange.getAttributes()) {
-			switch (attribute.getKind()) {
-			case ADD:
-				DefaultAddAttributeOperation
-						.process(element, attribute, pScope);
-				break;
-			case REMOVE:
-				DefaultRemoveAttributeOperation.process(element, attribute,
-						pScope);
-				break;
-			case SET:
-				DefaultSetAttributeOperation
-						.process(element, attribute, pScope);
-				break;
-			case UNSET:
-			default:
-				break;
+		for (Feature f : Lists.newArrayList(pChange.getFeatures())) {
+			if(f instanceof Attribute) {
+				Attribute attribute = (Attribute) f;
+				switch (attribute.getKind()) {
+				case ADD:
+					DefaultAddAttributeOperation.process(element, attribute, pScope);
+					break;
+				case REMOVE:
+					DefaultRemoveAttributeOperation.process(element, attribute,	pScope);
+					break;
+				case SET:
+					DefaultSetAttributeOperation.process(element, attribute, pScope);
+					break;
+				case UNSET:
+				default:
+					break;
+				}
 			}
 		}
 
@@ -58,8 +60,8 @@ public class DefaultCreateOperation {
 	}
 
 	private static void update(DSEMergeScope pScope, Create pChange) {
-		for (Delete d : DSEMergeStrategy.deleteDependencies.get(pChange
-				.getSrc())) {
+		for (Delete d : DSEMergeStrategy.deleteDependencies.get(DSEMergeStrategy.getId(pChange
+				.getSrc()))) {
 			d.setExecutable(false);
 			;
 		}

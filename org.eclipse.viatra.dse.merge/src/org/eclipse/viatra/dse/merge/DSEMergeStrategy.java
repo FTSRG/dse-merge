@@ -12,7 +12,6 @@ import org.eclipse.incquery.runtime.api.IPatternMatch;
 import org.eclipse.incquery.runtime.api.IQuerySpecification;
 import org.eclipse.incquery.runtime.api.IncQueryEngine;
 import org.eclipse.incquery.runtime.api.IncQueryMatcher;
-import org.eclipse.incquery.runtime.exception.IncQueryException;
 import org.eclipse.viatra.dse.api.strategy.interfaces.IStrategy;
 import org.eclipse.viatra.dse.base.DesignSpaceManager;
 import org.eclipse.viatra.dse.base.ThreadContext;
@@ -24,15 +23,12 @@ import org.eclipse.viatra.dse.merge.model.Create;
 import org.eclipse.viatra.dse.merge.model.Delete;
 import org.eclipse.viatra.dse.merge.model.Id;
 import org.eclipse.viatra.dse.merge.model.Reference;
-import org.eclipse.viatra.dse.merge.queries.ExecutableDeleteChangeMatch;
-import org.eclipse.viatra.dse.merge.queries.ExecutableDeleteChangeMatcher;
-import org.eclipse.viatra.dse.merge.queries.util.ExecutableDeleteChangeQuerySpecification;
 import org.eclipse.viatra.dse.merge.scope.DSEMergeScope;
 import org.eclipse.viatra.dse.objectives.Fitness;
 
 import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
-import com.google.common.collect.Sets;
 
 public class DSEMergeStrategy implements IStrategy {
 
@@ -46,8 +42,7 @@ public class DSEMergeStrategy implements IStrategy {
 	private boolean backtracked = false;
 	private IQuerySpecification<IncQueryMatcher<IPatternMatch>> id2eobject;
 	
-	public static Multimap<Object, Delete> deleteDependencies = ArrayListMultimap.create();
-	public static Multimap<Change, Change> changeDependencies = ArrayListMultimap.create();
+	public static Multimap<Object, Delete> deleteDependencies = HashMultimap.create();
 	
 	@Override
 	public void init(ThreadContext context) {
@@ -67,86 +62,58 @@ public class DSEMergeStrategy implements IStrategy {
 		buildDeleteDependencies(scope.getRemote(), scope.getLocal());
 	}
 
-	private void buildDeleteDependencies(ChangeSet from, ChangeSet to)
-			throws Exception {
-		
-		Collection<Object> checkedSet = Sets.newHashSet();
-		Multimap<Object,Delete> foundSet = ArrayListMultimap.create();
+	private void buildDeleteDependencies(ChangeSet from, ChangeSet to) throws Exception {
+		Multimap<Object,Object> idsNotToDelete = ArrayListMultimap.create();
 		
 		for (Change change : from.getChanges()) {
 			if(change instanceof Create) {
-				searchDeleteDependency(getId(((Create)change).getContainer()), checkedSet, foundSet, to);
-			}
-			else if(change instanceof Delete) {
-				searchDeleteDependency(getId(((Delete)change).getSrc()), checkedSet, foundSet, to);
+				findParents(getId(((Create)change).getContainer()), getId(((Create)change).getContainer()), idsNotToDelete);
 			}
 			else if(change instanceof Attribute) {
-				searchDeleteDependency(getId(((Attribute)change).getSrc()), checkedSet, foundSet, to);
+				findParents(getId(((Attribute)change).getSrc()), getId(((Attribute)change).getSrc()), idsNotToDelete);
 			}
 			else if(change instanceof Reference) {
-				searchDeleteDependency(getId(((Reference)change).getSrc()), checkedSet, foundSet, to);
-				searchDeleteDependency(getId(((Reference)change).getTrg()), checkedSet, foundSet, to);
+				findParents(getId(((Reference)change).getSrc()), getId(((Reference)change).getSrc()), idsNotToDelete);
+				findParents(getId(((Reference)change).getTrg()), getId(((Reference)change).getTrg()), idsNotToDelete);
 			}
-		}		
-		for(Object key : foundSet.keySet()) {
-			deleteDependencies.putAll(key, foundSet.get(key));
 		}
-	}
-	
-	private void searchDeleteDependency(Object original, Collection<Object> checkedSet, Multimap<Object,Delete> foundSet, ChangeSet changeSet) throws Exception {
-		if(original == null) return; //Corner case, when a create will create an object as root object
-		searchDeleteDependency(original, original, checkedSet, foundSet, changeSet);
-	}
-	
-	private void searchDeleteDependency(Object current, Object original, Collection<Object> checkedSet, Multimap<Object,Delete> foundSet, ChangeSet changeSet) throws Exception {
-		if(current.equals(-1)) { // Not identified object
-			checkedSet.add(-1);
-		} else if(foundSet.containsKey(current) && current != original) {
-			foundSet.putAll(original, foundSet.get(current));
-		} else if(!checkedSet.contains(current)) {
-			
-			IncQueryEngine engine = context.getIncqueryEngine();
-			ExecutableDeleteChangeMatcher matcher = ExecutableDeleteChangeQuerySpecification.instance().getMatcher(engine);
-			ExecutableDeleteChangeMatch partialMatch = matcher.newMatch(current, null, changeSet);
-			Collection<ExecutableDeleteChangeMatch> matches = matcher.getAllMatches(partialMatch);
-			
-			for (ExecutableDeleteChangeMatch match : matches) {
-				foundSet.put(current, match.getChange());
-				foundSet.put(original, match.getChange());
+		
+		for (Change change : to.getChanges()) {
+			if(change instanceof Delete) {
+				Object toDeleteObject = getId(change.getSrc());
+				for(Object id : idsNotToDelete.get(toDeleteObject)) {
+					deleteDependencies.put(id, (Delete)change);
+				}
 			}
-			
-			passForwardToParent(current, original, checkedSet, foundSet, changeSet);
 		}
-		checkedSet.add(current);
-		return;
+		System.out.println("done");
 	}
 
-	private void passForwardToParent(Object current, Object original, Collection<Object> checkedSet, Multimap<Object, Delete> foundSet, ChangeSet changeSet)
-			throws IncQueryException, Exception {
-		IncQueryEngine engine = context.getIncqueryEngine();
+	private void findParents(Object current, Object original, Multimap<Object, Object> idsNotToDelete) throws Exception {
+		idsNotToDelete.put(current, original);
 		
+		IncQueryEngine engine = context.getIncqueryEngine();
 		IncQueryMatcher<IPatternMatch> matcherForCurrent = id2eobject.getMatcher(engine);
 		IPatternMatch partialMatchForCurrent = matcherForCurrent.newMatch(null, current);
 		Collection<IPatternMatch> matchesForCurrent = matcherForCurrent.getAllMatches(partialMatchForCurrent);
 		
+		if(matchesForCurrent.isEmpty()) {
+			return; // may create related...
+		}
+		
 		if(matchesForCurrent.size() > 1) {
-			throw new Exception(); // id has to be unique
+			throw new Exception(); // id has to be unique or not found
 		}
-		if(!matchesForCurrent.isEmpty()) { // this is an identified object
-			EObject eobject = (EObject) matchesForCurrent.iterator().next().get("eobject");
-			if (eobject.eContainer() == null) {
-				return; // if no more parent...
-			}
-			EObject parent = eobject.eContainer();
-			if(parent != null) {
-				EStructuralFeature feature = parent.eClass().getEStructuralFeature("id");
-				if(feature == null) return;
-				searchDeleteDependency((Object) parent.eGet(feature), original, checkedSet, foundSet, changeSet);
-			}
-			
+		EObject eobject = (EObject) matchesForCurrent.iterator().next().get("eobject");
+		if (eobject.eContainer() == null) {
+			return; // no more parent...
 		}
+		EObject parent = eobject.eContainer();
+		EStructuralFeature feature = parent.eClass().getEStructuralFeature("id");
+		if(feature == null) return;
+		findParents(parent.eGet(feature), original, idsNotToDelete);				
 	}
-	
+
 	@Override
 	public ITransition getNextTransition(boolean lastWasSuccessful) {
 		if (isInterrupted) {
@@ -154,7 +121,7 @@ public class DSEMergeStrategy implements IStrategy {
 		}
 
 		DesignSpaceManager dsm = context.getDesignSpaceManager();
-		Collection<? extends ITransition> transitions = dsm.getTransitionsFromCurrentState(filterOptions);
+		Collection<? extends ITransition> transitions = dsm.getTransitionsFromCurrentState(filterOptions).stream().filter(x -> !x.getId().toString().equals("")).collect(Collectors.toList());
 		boolean hasMust = transitions.stream().anyMatch(x -> x.getId().toString().startsWith(MUST_PREFIX));
 		
 		if(!hasMust && backtracked) {
@@ -222,6 +189,7 @@ public class DSEMergeStrategy implements IStrategy {
 					+ ". Constraints not satisfied: " + constraintsNotSatisfied);
 
 			boolean hasMust = false;
+			backtracked = true;
 			DesignSpaceManager dsm = context.getDesignSpaceManager();
 			if(hasSolution) {
 				do {
@@ -230,7 +198,6 @@ public class DSEMergeStrategy implements IStrategy {
 					
 					Collection<? extends ITransition> transitions = dsm.getTransitionsFromCurrentState(filterOptions);
 					hasMust = transitions.stream().anyMatch(x -> x.getId().toString().startsWith(MUST_PREFIX));
-					backtracked = true;
 				} while (!hasMust && dsm.getTrajectoryInfo().getDepthFromRoot() > 0);
 			}
 			else {

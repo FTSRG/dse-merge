@@ -1,6 +1,7 @@
 package org.eclipse.viatra.dse.merge;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Level;
@@ -88,10 +89,10 @@ public class DSEMergeManager {
 	}
 	
 	public Collection<Solution> start() {
-//		BasicConfigurator.configure();
-//		Logger.getRootLogger().setLevel(Level.ERROR);
-//		Logger.getLogger(DSEMergeStrategy.class).setLevel(Level.DEBUG);
-//		Logger.getLogger(DesignSpaceManager.class).setLevel(Level.DEBUG);	
+		BasicConfigurator.configure();
+		Logger.getRootLogger().setLevel(Level.ERROR);
+		Logger.getLogger(DSEMergeStrategy.class).setLevel(Level.DEBUG);
+		Logger.getLogger(DesignSpaceManager.class).setLevel(Level.DEBUG);	
 		
 		dse.addMetaModelPackage(metamodel);
 		dse.addMetaModelPackage(ScopePackage.eINSTANCE);
@@ -132,6 +133,7 @@ public class DSEMergeManager {
 		}
 		return s;
 	}
+	
 	public DSEMergeScope applyMerge(SolutionTrajectory trajectory) {
 		try {
 			trajectory.setModel(scope);		
@@ -177,6 +179,18 @@ public class DSEMergeManager {
 				e.printStackTrace();
 			}
 			return this.scope;
+		}
+		
+		@Override
+		public String toString() {
+			StringBuilder sb = new StringBuilder();
+			sb.append("Solution:\n");
+			SolutionTrajectory trajectory = solution.getShortestTrajectory();
+			List<Object> list = trajectory.getTransitionIds();
+			for (Object l : list) {
+				sb.append(l);
+			}
+			return sb.toString();
 		}
 	}
 }

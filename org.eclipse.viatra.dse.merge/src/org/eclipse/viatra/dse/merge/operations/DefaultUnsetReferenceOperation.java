@@ -20,12 +20,8 @@ public class DefaultUnsetReferenceOperation {
 	}
 
 	private static void update(DSEMergeScope pScope, Reference pChange) {
-		for(Delete d : DSEMergeStrategy.deleteDependencies.get(pChange.getSrc())) {
+		for(Delete d : DSEMergeStrategy.deleteDependencies.get(DSEMergeStrategy.getId(pChange.getSrc()))) {
 			d.setExecutable(false);;
-		}
-		
-		for(Delete d : DSEMergeStrategy.deleteDependencies.get(pChange.getTrg())) {
-			d.setExecutable(false);
 		}
 		
 		if (pScope.getRemote().getChanges().contains(pChange)) {
