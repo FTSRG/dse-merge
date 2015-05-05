@@ -26,7 +26,7 @@ public class DefaultRemoveReferenceOperation {
 		for(Delete d : DSEMergeStrategy.deleteDependencies.get(pChange.getSrc())) {
 			d.setExecutable(false);
 		}
-		
+		 
 		if (pScope.getRemote().getChanges().contains(pChange)) {
 			for (Change change : pScope.getLocal().getChanges()) {
 				setToFalse(pChange, change);
@@ -44,7 +44,7 @@ public class DefaultRemoveReferenceOperation {
 		if (change instanceof Reference) {
 			Reference _change = (Reference) change;
 			if (((EReference) _change.getFeature()).isContainment()	&& ((EReference) pChange.getFeature()).isContainment()) {
-				if (_change.getTrg() == pChange.getTrg()) {
+				if (DSEMergeStrategy.getId(_change.getTrg()) == DSEMergeStrategy.getId(pChange.getTrg())) {
 					_change.setExecutable(false);
 				}
 			}

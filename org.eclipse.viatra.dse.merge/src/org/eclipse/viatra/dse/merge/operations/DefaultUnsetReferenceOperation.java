@@ -44,7 +44,7 @@ public class DefaultUnsetReferenceOperation {
 	private static void setToFalse(Reference pChange, Change change) {
 		if (change instanceof Reference) {
 			Attribute _change = (Attribute) change;
-			if (_change.getSrc() == pChange.getSrc() && _change.getFeature() == pChange.getFeature())
+			if (DSEMergeStrategy.getId(_change.getSrc()) == DSEMergeStrategy.getId(pChange.getSrc()) && _change.getFeature() == pChange.getFeature())
 				_change.setExecutable(false);
 		}
 	}

@@ -39,7 +39,7 @@ public class DefaultSetAttributeOperation {
 	private static void setToFalse(Attribute pChange, Change change) {
 		if (change instanceof Attribute) {
 			Attribute _change = (Attribute) change;
-			if (_change.getSrc() == pChange.getSrc() && _change.getFeature() == pChange.getFeature())
+			if (DSEMergeStrategy.getId(_change.getSrc()) == DSEMergeStrategy.getId(pChange.getSrc()) && _change.getFeature() == pChange.getFeature())
 				_change.setExecutable(false);
 		}
 	}

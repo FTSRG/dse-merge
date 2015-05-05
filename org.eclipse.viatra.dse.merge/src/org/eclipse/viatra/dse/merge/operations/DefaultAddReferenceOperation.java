@@ -50,7 +50,7 @@ public class DefaultAddReferenceOperation {
 			Reference _change = (Reference) change;
 			if(_change.getKind().equals(Kind.ADD)) {
 				if(((EReference)_change.getFeature()).isContainment() && ((EReference)pChange.getFeature()).isContainment()) {
-					if(_change.getTrg() == pChange.getTrg()) {
+					if(DSEMergeStrategy.getId(_change.getTrg()) == DSEMergeStrategy.getId(pChange.getTrg())) {
 						_change.setExecutable(false);
 					}	
 				} 

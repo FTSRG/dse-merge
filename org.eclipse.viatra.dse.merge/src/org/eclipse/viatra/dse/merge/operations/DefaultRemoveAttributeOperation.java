@@ -43,7 +43,7 @@ public class DefaultRemoveAttributeOperation {
 	private static void setToFalse(Attribute pChange, Change change) {
 		if (change instanceof Attribute) {
 			Attribute _change = (Attribute) change;
-			if (_change.getSrc() == pChange.getSrc() && _change.getValue().equals(pChange.getValue()))
+			if (DSEMergeStrategy.getId(_change.getSrc()) == DSEMergeStrategy.getId(pChange.getSrc()) && _change.getValue().equals(pChange.getValue()))
 				_change.setExecutable(false);
 		}
 	}

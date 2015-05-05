@@ -44,7 +44,7 @@ public class DefaultSetReferenceOperation {
 	private static void setToFalse(Reference pChange, Change change) {
 		if (change instanceof Reference) {
 			Reference _change = (Reference) change;
-			if (_change.getSrc() == pChange.getSrc() && _change.getFeature() == pChange.getFeature())
+			if (DSEMergeStrategy.getId(_change.getSrc()) == DSEMergeStrategy.getId(pChange.getSrc()) && _change.getFeature() == pChange.getFeature())
 				_change.setExecutable(false);
 		}
 	}

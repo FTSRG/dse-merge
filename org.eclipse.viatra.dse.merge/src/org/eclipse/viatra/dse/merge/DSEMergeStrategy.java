@@ -165,9 +165,10 @@ public class DSEMergeStrategy implements IStrategy {
 		
 		if (hasMust) {
 			transitions = transitions.stream().filter(x -> x.getId().toString().startsWith(MUST_PREFIX)).collect(Collectors.toList());
-		} else {
-			transitions = transitions.stream().filter(x -> x.getId().toString().startsWith(MAY_PREFIX)).collect(Collectors.toList());
-		}
+		} 
+//		else {
+//			transitions = transitions.stream().filter(x -> x.getId().toString().startsWith(MAY_PREFIX)).collect(Collectors.toList());
+//		}
 		
 		// backtrack
 		while (transitions == null || transitions.isEmpty()) {
@@ -180,8 +181,14 @@ public class DSEMergeStrategy implements IStrategy {
 					+ dsm.getCurrentState().getId());
 
 			transitions = dsm.getTransitionsFromCurrentState(filterOptions);
-			transitions = transitions.stream().filter(x -> x.getId().toString().startsWith(MUST_PREFIX))
-					.collect(Collectors.toList());
+			boolean hasMust2 = transitions.stream().anyMatch(x -> x.getId().toString().startsWith(MUST_PREFIX));
+			if(hasMust2) {
+				transitions = transitions.stream().filter(x -> x.getId().toString().startsWith(MUST_PREFIX)).collect(Collectors.toList());				
+			}
+//			else {
+//				transitions = transitions.stream().filter(x -> x.getId().toString().startsWith(MAY_PREFIX)).collect(Collectors.toList());
+//			}
+			
 		}
 
 //		if (hasMust && transitions.size() > 1 && context.getGlobalContext().canStartNewThread()) {
