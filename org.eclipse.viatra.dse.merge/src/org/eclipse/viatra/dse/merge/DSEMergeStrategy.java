@@ -47,6 +47,7 @@ public class DSEMergeStrategy implements IStrategy {
 	private IQuerySpecification<IncQueryMatcher<IPatternMatch>> id2eobject;
 	
 	public static Multimap<Object, Delete> deleteDependencies = ArrayListMultimap.create();
+	public static Multimap<Change, Change> changeDependencies = ArrayListMultimap.create();
 	
 	@Override
 	public void init(ThreadContext context) {
@@ -179,8 +180,7 @@ public class DSEMergeStrategy implements IStrategy {
 					+ dsm.getCurrentState().getId());
 
 			transitions = dsm.getTransitionsFromCurrentState(filterOptions);
-			transitions = transitions.stream()
-					.filter(x -> x.getId().toString().startsWith(MUST_PREFIX))
+			transitions = transitions.stream().filter(x -> x.getId().toString().startsWith(MUST_PREFIX))
 					.collect(Collectors.toList());
 		}
 
@@ -207,20 +207,29 @@ public class DSEMergeStrategy implements IStrategy {
 	@Override
 	public void newStateIsProcessed(boolean isAlreadyTraversed,	Fitness fitness, boolean constraintsNotSatisfied) {
 		if (isAlreadyTraversed || constraintsNotSatisfied || (fitness.isSatisifiesHardObjectives())) {
+			
+			boolean hasSolution = fitness.isSatisifiesHardObjectives();
+			
 			logger.debug("Backtrack. Already traversed: " + isAlreadyTraversed
 					+ ". Goal state: " + (fitness.isSatisifiesHardObjectives())
 					+ ". Constraints not satisfied: " + constraintsNotSatisfied);
 
 			boolean hasMust = false;
 			DesignSpaceManager dsm = context.getDesignSpaceManager();
-			do {
-				if(!dsm.undoLastTransformation())
-					return;
-				
-				Collection<? extends ITransition> transitions = dsm.getTransitionsFromCurrentState(filterOptions);
-				hasMust = transitions.stream().anyMatch(x -> x.getId().toString().startsWith(MUST_PREFIX));
-				backtracked = true;
-			} while (!hasMust && dsm.getTrajectoryInfo().getDepthFromRoot() > 0);
+			if(hasSolution) {
+				do {
+					if(!dsm.undoLastTransformation())
+						return;
+					
+					Collection<? extends ITransition> transitions = dsm.getTransitionsFromCurrentState(filterOptions);
+					hasMust = transitions.stream().anyMatch(x -> x.getId().toString().startsWith(MUST_PREFIX));
+					backtracked = true;
+				} while (!hasMust && dsm.getTrajectoryInfo().getDepthFromRoot() > 0);
+			}
+			else {
+			if(!dsm.undoLastTransformation())
+				return;
+			}
 		}
 	}
 

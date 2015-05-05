@@ -88,10 +88,10 @@ public class DSEMergeManager {
 	}
 	
 	public Collection<Solution> start() {
-		BasicConfigurator.configure();
-		Logger.getRootLogger().setLevel(Level.ERROR);
-		Logger.getLogger(DSEMergeStrategy.class).setLevel(Level.DEBUG);
-		Logger.getLogger(DesignSpaceManager.class).setLevel(Level.DEBUG);	
+//		BasicConfigurator.configure();
+//		Logger.getRootLogger().setLevel(Level.ERROR);
+//		Logger.getLogger(DSEMergeStrategy.class).setLevel(Level.DEBUG);
+//		Logger.getLogger(DesignSpaceManager.class).setLevel(Level.DEBUG);	
 		
 		dse.addMetaModelPackage(metamodel);
 		dse.addMetaModelPackage(ScopePackage.eINSTANCE);
@@ -121,7 +121,6 @@ public class DSEMergeManager {
 		strategy.setId2EObject(id2eobject);
 		dse.setMaxNumberOfThreads(4);
 		dse.startExploration(strategy);
-		dse.prettyPrintSolutions();
 		
 		return buildSolutions(dse.getSolutions());
 	}
