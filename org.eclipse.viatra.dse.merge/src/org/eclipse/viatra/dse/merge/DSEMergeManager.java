@@ -89,10 +89,10 @@ public class DSEMergeManager {
 	}
 	
 	public Collection<Solution> start() {
-//		BasicConfigurator.configure();
-//		Logger.getRootLogger().setLevel(Level.ERROR);
-//		Logger.getLogger(DSEMergeStrategy.class).setLevel(Level.DEBUG);
-//		Logger.getLogger(DesignSpaceManager.class).setLevel(Level.DEBUG);	
+		BasicConfigurator.configure();
+		Logger.getRootLogger().setLevel(Level.ERROR);
+		Logger.getLogger(DSEMergeStrategy.class).setLevel(Level.DEBUG);
+		Logger.getLogger(DesignSpaceManager.class).setLevel(Level.DEBUG);	
 		
 		dse.addMetaModelPackage(metamodel);
 		dse.addMetaModelPackage(ScopePackage.eINSTANCE);

@@ -1,5 +1,6 @@
 package org.eclipse.viatra.dse.merge;
 
+import java.beans.Transient;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Random;
@@ -39,7 +40,7 @@ public class DSEMergeStrategy implements IStrategy {
 	private Logger logger = Logger.getLogger(IStrategy.class);
 	private Random random = new Random();
 	private DesignSpaceManager.FilterOptions filterOptions;
-	private boolean backtracked = false;
+	private boolean backtrackedWithSolution = false;
 	private IQuerySpecification<IncQueryMatcher<IPatternMatch>> id2eobject;
 	
 	public static Multimap<Object, Delete> deleteDependencies = HashMultimap.create();
@@ -123,11 +124,11 @@ public class DSEMergeStrategy implements IStrategy {
 		Collection<? extends ITransition> transitions = dsm.getTransitionsFromCurrentState(filterOptions).stream().filter(x -> !x.getId().toString().equals("")).collect(Collectors.toList());
 		boolean hasMust = transitions.stream().anyMatch(x -> x.getId().toString().startsWith(MUST_PREFIX));
 		
-		if(!hasMust && backtracked) {
+		if(!hasMust && backtrackedWithSolution) {
 			return null;
 		}
 
-		backtracked = false;
+		backtrackedWithSolution = false;
 		
 		if (hasMust) {
 			transitions = transitions.stream().filter(x -> x.getId().toString().startsWith(MUST_PREFIX)).collect(Collectors.toList());
@@ -146,7 +147,7 @@ public class DSEMergeStrategy implements IStrategy {
 			logger.debug("Backtracking as there aren't anymore transitions from this state: "
 					+ dsm.getCurrentState().getId());
 
-			transitions = dsm.getTransitionsFromCurrentState(filterOptions);
+			transitions = dsm.getTransitionsFromCurrentState(filterOptions).stream().filter(x -> !x.getId().toString().equals("")).collect(Collectors.toList());
 			boolean hasMust2 = transitions.stream().anyMatch(x -> x.getId().toString().startsWith(MUST_PREFIX));
 			if(hasMust2) {
 				transitions = transitions.stream().filter(x -> x.getId().toString().startsWith(MUST_PREFIX)).collect(Collectors.toList());				
@@ -188,20 +189,22 @@ public class DSEMergeStrategy implements IStrategy {
 					+ ". Constraints not satisfied: " + constraintsNotSatisfied);
 
 			boolean hasMust = false;
-			backtracked = true;
+			if(hasSolution)
+				backtrackedWithSolution = true;
 			DesignSpaceManager dsm = context.getDesignSpaceManager();
 			if(hasSolution) {
 				do {
 					if(!dsm.undoLastTransformation())
 						return;
 					
-					Collection<? extends ITransition> transitions = dsm.getTransitionsFromCurrentState(filterOptions);
+					Collection<? extends ITransition> transitions = dsm.getTransitionsFromCurrentState(filterOptions).stream().filter(x -> !x.getId().toString().equals("")).collect(Collectors.toList());
 					hasMust = transitions.stream().anyMatch(x -> x.getId().toString().startsWith(MUST_PREFIX));
 				} while (!hasMust && dsm.getTrajectoryInfo().getDepthFromRoot() > 0);
 			}
 			else {
-			if(!dsm.undoLastTransformation())
-				return;
+				if(!dsm.undoLastTransformation())
+					return;
+
 			}
 		}
 	}
