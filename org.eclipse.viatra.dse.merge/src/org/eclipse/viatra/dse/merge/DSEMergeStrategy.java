@@ -86,7 +86,6 @@ public class DSEMergeStrategy implements IStrategy {
 				}
 			}
 		}
-		System.out.println("done");
 	}
 
 	private void findParents(Object current, Object original, Multimap<Object, Object> idsNotToDelete) throws Exception {
