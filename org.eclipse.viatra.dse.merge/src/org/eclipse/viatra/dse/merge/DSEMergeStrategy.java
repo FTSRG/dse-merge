@@ -47,6 +47,8 @@ public class DSEMergeStrategy implements IStrategy {
 	
 	public static Multimap<Object, Delete> deleteDependencies = HashMultimap.create();
 	private Set<String> usedMustTransitions = Sets.newHashSet();
+	private Set<String> tempLiberateMustTransitions = Sets.newHashSet();
+	private Set<String> liberateMustTransitions = Sets.newHashSet();
 	
 	@Override
 	public void init(ThreadContext context) {
@@ -124,9 +126,17 @@ public class DSEMergeStrategy implements IStrategy {
 		}
 
 		DesignSpaceManager dsm = context.getDesignSpaceManager();
+		
 		//Query available transitions
 		Collection<? extends ITransition> transitions = dsm.getTransitionsFromCurrentState(filterOptions).stream().filter(x -> !x.getId().toString().equals("")).collect(Collectors.toList());
 		transitions = restrictTransitions(transitions);
+		
+		if(dsm.getTrajectoryInfo().getDepthFromRoot() == 0) {
+			boolean needMust = dsm.getCurrentState().getOutgoingTransitions().stream().anyMatch(x -> x.getId().toString().startsWith(MUST_PREFIX));
+			boolean hasMust = transitions.stream().anyMatch(x -> x.getId().toString().startsWith(MUST_PREFIX));
+			if(needMust && !hasMust)
+				return null;
+		}
 		
 		//Backtrack if there is no transitions
 		while (transitions == null || transitions.isEmpty()) {
@@ -190,21 +200,26 @@ public class DSEMergeStrategy implements IStrategy {
 		
 		if (fitness.isSatisifiesHardObjectives()) {
 			
-			onlyNewMust = true; //we found a solution
 			DesignSpaceManager dsm = context.getDesignSpaceManager();
+			processNotTraversed(isAlreadyTraversed);
+			onlyNewMust = true; //we found a solution
 			undoUntilMust(isAlreadyTraversed, fitness, constraintsNotSatisfied,	dsm);
 			return;
 		}
 		
+		processNotTraversed(isAlreadyTraversed);
+	}
+
+	private void processNotTraversed(boolean isAlreadyTraversed) {
 		if (!isAlreadyTraversed && context.getDesignSpaceManager().getTrajectoryInfo().getLastTransition() != null)  {
 			
 			DesignSpaceManager dsm = context.getDesignSpaceManager();
 			boolean isMust = dsm.getTrajectoryInfo().getLastTransition().getId().toString().startsWith(MUST_PREFIX);
-			if(isMust) {
-				boolean isNotAlreadyUsed = usedMustTransitions.add(dsm.getTrajectoryInfo().getLastTransition().getId().toString());
-				if(!isNotAlreadyUsed && onlyNewMust) {
-					onlyNewMust = false;
-				}
+			if(isMust && !usedMustTransitions.contains(dsm.getTrajectoryInfo().getLastTransition().getId().toString())) {
+				if(!usedMustTransitions.isEmpty() && dsm.getTrajectoryInfo().getFullTransitionTrajectory().size() == 1)
+					usedMustTransitions.clear();
+				usedMustTransitions.add(dsm.getTrajectoryInfo().getLastTransition().getId().toString());
+				onlyNewMust = false;				
 			}
 		}
 	}
@@ -214,13 +229,19 @@ public class DSEMergeStrategy implements IStrategy {
 		boolean hasMust;
 		do {
 			if(!dsm.undoLastTransformation())
-			return;
+				return;
 			
 			logBacktrack(isAlreadyTraversed, fitness, constraintsNotSatisfied);
-			
-			Collection<? extends ITransition> transitions = dsm.getTransitionsFromCurrentState(filterOptions).stream().filter(x -> !x.getId().toString().equals("")).collect(Collectors.toList());
+			liberateMustTransitions.addAll(tempLiberateMustTransitions);
+			tempLiberateMustTransitions.clear();
+			Collection<? extends ITransition> transitions = dsm.getCurrentState().getOutgoingTransitions().stream().filter(x -> !x.getId().toString().equals("")).collect(Collectors.toList());
+			tempLiberateMustTransitions.addAll(transitions.stream().filter(x -> usedMustTransitions.contains(x.getId())).map(x -> x.getId().toString()).collect(Collectors.toList()));
+			transitions = dsm.getTransitionsFromCurrentState(filterOptions).stream().filter(x -> !x.getId().toString().equals("")).collect(Collectors.toList());
+			transitions = restrictTransitions(transitions);
 			hasMust = transitions.stream().anyMatch(x -> x.getId().toString().startsWith(MUST_PREFIX));
 		} while (!hasMust && dsm.getTrajectoryInfo().getDepthFromRoot() > 0);
+		usedMustTransitions.removeAll(liberateMustTransitions);
+		liberateMustTransitions.clear();
 	}
 
 	private void logBacktrack(boolean isAlreadyTraversed, Fitness fitness,
