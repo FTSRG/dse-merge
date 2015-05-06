@@ -167,10 +167,10 @@ public class DSEMergeStrategy implements IStrategy {
 
 	private Collection<? extends ITransition> restrictTransitions(Collection<? extends ITransition> transitions) {
 		boolean hasMust = transitions.stream().anyMatch(x -> x.getId().toString().startsWith(MUST_PREFIX));
+		if(hasMust || onlyNewMust)
+			transitions = transitions.stream().filter(x -> x.getId().toString().startsWith(MUST_PREFIX)).collect(Collectors.toList());
 		if(onlyNewMust)
 			transitions = transitions.stream().filter(x -> !usedMustTransitions.contains(x.getId().toString())).collect(Collectors.toList());
-		else if(hasMust)
-			transitions = transitions.stream().filter(x -> x.getId().toString().startsWith(MUST_PREFIX)).collect(Collectors.toList());
 		return transitions;
 	}
 
@@ -190,9 +190,7 @@ public class DSEMergeStrategy implements IStrategy {
 		
 		if (fitness.isSatisifiesHardObjectives()) {
 			
-			boolean hasMust = false;
 			onlyNewMust = true; //we found a solution
-			
 			DesignSpaceManager dsm = context.getDesignSpaceManager();
 			undoUntilMust(isAlreadyTraversed, fitness, constraintsNotSatisfied,	dsm);
 			return;
