@@ -176,7 +176,7 @@ public class DSEMergeManager {
 			try {
 				SolutionTrajectory trajectory = solution.getShortestTrajectory();
 				trajectory.setModel(this.scope);		
-				trajectory.doNextTransformation();
+				trajectory.doTransformation();
 				applied = true;
 			} catch (IncQueryException e) {
 				e.printStackTrace();
