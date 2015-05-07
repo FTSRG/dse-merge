@@ -8,6 +8,8 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.util.EcoreAdapterFactory;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.incquery.runtime.api.IMatchProcessor;
 import org.eclipse.incquery.runtime.api.IPatternMatch;
 import org.eclipse.incquery.runtime.api.IQuerySpecification;
@@ -27,6 +29,7 @@ import org.eclipse.viatra.dse.merge.scope.ScopeFactory;
 import org.eclipse.viatra.dse.merge.scope.ScopePackage;
 import org.eclipse.viatra.dse.objectives.impl.ModelQueriesHardObjective;
 import org.eclipse.viatra.dse.objectives.impl.ModelQueryType;
+import org.eclipse.viatra.dse.util.EMFHelper;
 
 import com.google.common.collect.Lists;
 
@@ -159,7 +162,7 @@ public class DSEMergeManager {
 		private boolean applied = false;
 		
 		public Solution(DSEMergeScope scope, org.eclipse.viatra.dse.api.Solution solution) {
-			this.scope = scope;
+			this.scope = (DSEMergeScope) EMFHelper.clone(scope);
 			this.solution = solution;
 		}
 		
