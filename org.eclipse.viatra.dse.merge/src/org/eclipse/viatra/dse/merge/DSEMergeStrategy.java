@@ -14,6 +14,7 @@ import org.eclipse.incquery.runtime.api.IQuerySpecification;
 import org.eclipse.incquery.runtime.api.IncQueryEngine;
 import org.eclipse.incquery.runtime.api.IncQueryMatcher;
 import org.eclipse.viatra.dse.api.strategy.interfaces.IStrategy;
+import org.eclipse.viatra.dse.api.strategy.interfaces.LocalSearchStrategyBase;
 import org.eclipse.viatra.dse.base.DesignSpaceManager;
 import org.eclipse.viatra.dse.base.ThreadContext;
 import org.eclipse.viatra.dse.designspace.api.ITransition;
@@ -33,7 +34,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Sets;
 
-public class DSEMergeStrategy implements IStrategy {
+public class DSEMergeStrategy extends LocalSearchStrategyBase {
 
 	private ThreadContext context;
 	private boolean isInterrupted = false;
@@ -270,6 +271,5 @@ public class DSEMergeStrategy implements IStrategy {
 		default:
 			return null;
 		}
-	}
-	
+	}	
 }

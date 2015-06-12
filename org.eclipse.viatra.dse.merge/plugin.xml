@@ -4,11 +4,14 @@
     <!-- @generated merge -->
     <package class="org.eclipse.viatra.dse.merge.model.ModelPackage" genModel="model/merge.genmodel" uri="http://org.eclipse.viatra.dse.merge/model"/>
   </extension>
-  <extension point="org.eclipse.emf.ecore.generated_package">
-    <!-- @generated scope -->
-    <package class="org.eclipse.viatra.dse.merge.scope.ScopePackage" genModel="model/scope.genmodel" uri="http://org.eclipse.viatra.dse.merge/scope"/>
-  </extension>
-  <extension id="org.eclipse.viatra.dse.merge.queries.Query" point="org.eclipse.incquery.runtime.queryspecification">
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated scope -->
+      <package
+            uri="http://org.eclipse.viatra.dse.merge/scope"
+            class="org.eclipse.viatra.dse.merge.scope.ScopePackage"
+            genModel="model/scope.genmodel"/>
+   </extension>
+  <extension id="org.eclipse.viatra.dse.merge.queries.Query" point="org.eclipse.incquery.runtime.queryspecification">
     <group group="org.eclipse.incquery.runtime.extensibility.SingletonExtensionFactory:org.eclipse.viatra.dse.merge.queries.Query" id="org.eclipse.viatra.dse.merge.queries.Query"/>
   </extension>
 </plugin>

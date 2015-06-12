@@ -102,7 +102,7 @@ public class DSEMergeManager {
 		dse.addMetaModelPackage(ModelPackage.eINSTANCE);
 		
 		dse.setInitialModel(scope);
-		dse.setSerializerFactory(new DSEMergeSerializerFactory());
+		dse.setStateCoderFactory(new DSEMergeSerializerFactory());
 		
 		ModelQueriesHardObjective modelQueriesHardObjective = new ModelQueriesHardObjective();
 		for (IQuerySpecification<?> objective : objectives) {
@@ -189,7 +189,7 @@ public class DSEMergeManager {
 			StringBuilder sb = new StringBuilder();
 			sb.append("Solution:\n");
 			SolutionTrajectory trajectory = solution.getShortestTrajectory();
-			List<Object> list = trajectory.getTransitionIds();
+			List<Object> list = trajectory.getActivationCodes();
 			for (Object l : list) {
 				sb.append(l);
 			}

@@ -2,6 +2,8 @@ package org.eclipse.viatra.dse.merge;
 
 import java.util.Comparator;
 
+import org.apache.log4j.Logger;
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -10,23 +12,19 @@ import org.eclipse.viatra.dse.merge.model.Attribute;
 import org.eclipse.viatra.dse.merge.model.Change;
 import org.eclipse.viatra.dse.merge.model.ChangeSet;
 import org.eclipse.viatra.dse.merge.model.Create;
+import org.eclipse.viatra.dse.merge.model.Delete;
 import org.eclipse.viatra.dse.merge.model.Priority;
 import org.eclipse.viatra.dse.merge.model.Reference;
-import org.eclipse.viatra.dse.merge.model.Delete;
 import org.eclipse.viatra.dse.merge.queries.ExecutableDeleteChangeMatch;
 import org.eclipse.viatra.dse.merge.scope.DSEMergeScope;
-import org.eclipse.viatra.dse.statecode.IStateSerializer;
+import org.eclipse.viatra.dse.statecode.IStateCoder;
 
-public class DSEMergeSerializer implements IStateSerializer {
+public class DSEMergeSerializer implements IStateCoder {
 
 	private DSEMergeScope scope;
 
-	public DSEMergeSerializer(DSEMergeScope scope) {
-		this.scope = scope;
-	}
-	
 	@Override
-	public Object serializeContainmentTree() {
+	public Object createStateCode() {
 		StringBuilder sb = new StringBuilder();
 		
 		sb.append("Local mods: {\n");
@@ -124,7 +122,7 @@ public class DSEMergeSerializer implements IStateSerializer {
 	}
 
 	@Override
-	public Object serializePatternMatch(IPatternMatch match) {
+	public Object createActivationCode(IPatternMatch match) {
 		String ret = "";
 		if(match instanceof ExecutableDeleteChangeMatch) return ret;
 		Change change = (Change) match.get("change");
@@ -157,6 +155,12 @@ public class DSEMergeSerializer implements IStateSerializer {
 	}
 
 	@Override
-	public void resetCache() {	}
+	public void init(Notifier notifier) {
+		if(notifier instanceof DSEMergeScope) {
+			this.scope = (DSEMergeScope) notifier;
+		} else {
+			Logger.getLogger(this.getClass()).error("Only DSEMergeScope can be used instead of: " + notifier.getClass());
+		}
+	}
 
 }
