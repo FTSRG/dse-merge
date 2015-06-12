@@ -8,8 +8,6 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.util.EcoreAdapterFactory;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.incquery.runtime.api.IMatchProcessor;
 import org.eclipse.incquery.runtime.api.IPatternMatch;
 import org.eclipse.incquery.runtime.api.IQuerySpecification;
@@ -102,7 +100,7 @@ public class DSEMergeManager {
 		dse.addMetaModelPackage(ModelPackage.eINSTANCE);
 		
 		dse.setInitialModel(scope);
-		dse.setSerializerFactory(new DSEMergeSerializerFactory());
+		dse.setStateCoderFactory(new DSEMergeSerializerFactory());
 		
 		ModelQueriesHardObjective modelQueriesHardObjective = new ModelQueriesHardObjective();
 		for (IQuerySpecification<?> objective : objectives) {
@@ -189,7 +187,7 @@ public class DSEMergeManager {
 			StringBuilder sb = new StringBuilder();
 			sb.append("Solution:\n");
 			SolutionTrajectory trajectory = solution.getShortestTrajectory();
-			List<Object> list = trajectory.getTransitionIds();
+			List<Object> list = trajectory.getActivationCodes();
 			for (Object l : list) {
 				sb.append(l);
 			}

@@ -1,16 +1,13 @@
 package org.eclipse.viatra.dse.merge;
 
-import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.viatra.dse.merge.scope.DSEMergeScope;
-import org.eclipse.viatra.dse.statecode.IStateSerializer;
-import org.eclipse.viatra.dse.statecode.IStateSerializerFactory;
+import org.eclipse.viatra.dse.statecode.IStateCoder;
+import org.eclipse.viatra.dse.statecode.IStateCoderFactory;
 
-public class DSEMergeSerializerFactory implements IStateSerializerFactory {
+public class DSEMergeSerializerFactory implements IStateCoderFactory {
 
 	@Override
-	public IStateSerializer createStateSerializer(Notifier modelRoot)
-			throws UnsupportedMetaModel {
-		return new DSEMergeSerializer((DSEMergeScope) modelRoot);
+	public IStateCoder createStateCoder() {
+		return new DSEMergeSerializer();
 	}
 
 }
