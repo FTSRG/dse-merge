@@ -4,7 +4,6 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.Random;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
@@ -26,10 +25,12 @@ import org.eclipse.viatra.dse.merge.model.Delete;
 import org.eclipse.viatra.dse.merge.model.Id;
 import org.eclipse.viatra.dse.merge.model.Reference;
 import org.eclipse.viatra.dse.merge.scope.DSEMergeScope;
+import org.eclipse.viatra.dse.merge.util.FilterHelper;
 import org.eclipse.viatra.dse.objectives.Fitness;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Iterables;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Sets;
 
@@ -128,18 +129,18 @@ public class DSEMergeStrategy extends LocalSearchStrategyBase {
 		DesignSpaceManager dsm = context.getDesignSpaceManager();
 		
 		//Query available transitions
-		Collection<? extends ITransition> transitions = dsm.getTransitionsFromCurrentState(filterOptions).stream().filter(x -> !x.getId().toString().equals("")).collect(Collectors.toList());
+		Iterable<? extends ITransition> transitions = FilterHelper.filterEmptyTransitions(dsm.getTransitionsFromCurrentState(filterOptions));
 		transitions = restrictTransitions(transitions);
 		
 		if(dsm.getTrajectoryInfo().getDepthFromRoot() == 0) {
-			boolean needMust = dsm.getCurrentState().getOutgoingTransitions().stream().anyMatch(x -> x.getId().toString().startsWith(MUST_PREFIX));
-			boolean hasMust = transitions.stream().anyMatch(x -> x.getId().toString().startsWith(MUST_PREFIX));
+			boolean needMust = FilterHelper.hasMustTransition(dsm.getCurrentState().getOutgoingTransitions());
+			boolean hasMust = FilterHelper.hasMustTransition(transitions);
 			if(needMust && !hasMust)
 				return null;
 		}
 		
 		//Backtrack if there is no transitions
-		while (transitions == null || transitions.isEmpty()) {
+		while (transitions == null || transitions.iterator().hasNext()) {
 			boolean didUndo = dsm.undoLastTransformation();
 			if (!didUndo) {
 				return null;
@@ -149,7 +150,7 @@ public class DSEMergeStrategy extends LocalSearchStrategyBase {
 					+ dsm.getCurrentState().getId());
 
 			//Update transitions
-			transitions = dsm.getTransitionsFromCurrentState(filterOptions).stream().filter(x -> !x.getId().toString().equals("")).collect(Collectors.toList());
+			transitions = FilterHelper.filterEmptyTransitions(dsm.getTransitionsFromCurrentState(filterOptions));
 			transitions = restrictTransitions(transitions);			
 		}
 		
@@ -159,7 +160,7 @@ public class DSEMergeStrategy extends LocalSearchStrategyBase {
 //		}
 
 		//Get a random transition from the available ones
-		int index = random.nextInt(transitions.size());
+		int index = random.nextInt(Iterables.size(transitions));
 		Iterator<? extends ITransition> iterator = transitions.iterator();
 		while (iterator.hasNext() && index != 0) {
 			index--;
@@ -175,12 +176,12 @@ public class DSEMergeStrategy extends LocalSearchStrategyBase {
 		return transition;
 	}
 
-	private Collection<? extends ITransition> restrictTransitions(Collection<? extends ITransition> transitions) {
-		boolean hasMust = transitions.stream().anyMatch(x -> x.getId().toString().startsWith(MUST_PREFIX));
+	private Iterable<? extends ITransition> restrictTransitions(Iterable<? extends ITransition> transitions) {
+		boolean hasMust = FilterHelper.hasMustTransition(transitions);
 		if(hasMust || onlyNewMust)
-			transitions = transitions.stream().filter(x -> x.getId().toString().startsWith(MUST_PREFIX)).collect(Collectors.toList());
+			transitions = FilterHelper.filterMustTransitions(transitions);
 		if(onlyNewMust)
-			transitions = transitions.stream().filter(x -> !usedMustTransitions.contains(x.getId().toString())).collect(Collectors.toList());
+			transitions = FilterHelper.filterAlreadyUsedTransitions(transitions, usedMustTransitions);
 		return transitions;
 	}
 
@@ -234,11 +235,11 @@ public class DSEMergeStrategy extends LocalSearchStrategyBase {
 			logBacktrack(isAlreadyTraversed, fitness, constraintsNotSatisfied);
 			liberateMustTransitions.addAll(tempLiberateMustTransitions);
 			tempLiberateMustTransitions.clear();
-			Collection<? extends ITransition> transitions = dsm.getCurrentState().getOutgoingTransitions().stream().filter(x -> !x.getId().toString().equals("")).collect(Collectors.toList());
-			tempLiberateMustTransitions.addAll(transitions.stream().filter(x -> usedMustTransitions.contains(x.getId())).map(x -> x.getId().toString()).collect(Collectors.toList()));
-			transitions = dsm.getTransitionsFromCurrentState(filterOptions).stream().filter(x -> !x.getId().toString().equals("")).collect(Collectors.toList());
+			Iterable<? extends ITransition> transitions = FilterHelper.filterEmptyTransitions(dsm.getCurrentState().getOutgoingTransitions());
+			tempLiberateMustTransitions.addAll(FilterHelper.selectTempLiberateMustTransitions(transitions, usedMustTransitions));
+			transitions = FilterHelper.filterEmptyTransitions(dsm.getTransitionsFromCurrentState(filterOptions));
 			transitions = restrictTransitions(transitions);
-			hasMust = transitions.stream().anyMatch(x -> x.getId().toString().startsWith(MUST_PREFIX));
+			hasMust = FilterHelper.hasMustTransition(transitions);
 		} while (!hasMust && dsm.getTrajectoryInfo().getDepthFromRoot() > 0);
 		usedMustTransitions.removeAll(liberateMustTransitions);
 		liberateMustTransitions.clear();
